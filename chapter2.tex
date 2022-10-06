@@ -1,23 +1,144 @@
 \chapter{Command Line}
 
-\section{\texttt{ls}}
+\section{Basic commands}
 
-\section{\texttt{cd}}
+\textit{Covered in \href{https://www.youtube.com/watch?v=oIsH0V3fRt8&list=PLjGmdnqrOKuYXiu7lgG5HW71jPEUd1XCm&index=2}{video 1 of the series}}
 
-\section{\texttt{pwd}}
+\subsection{\texttt{ls}}
 
-\section{\texttt{touch}}
+\texttt{ls} stands for list. Lists out the files and folders you have in your current directory. \textbf{Directory is another word for folder.}
 
-\section{\texttt{mkdir}}
+\begin{lstlisting}[language=bash]
+$ ls
+README.md   docs  node_modules  package.json    
+app     gulpfile.js     package-lock.json
+\end{lstlisting}
 
-\section{\texttt{--version}}
+You could run \texttt{ls -a} to show hidden files and folders as well, which are the ones with their names start with a \texttt{.}
 
-\section{\texttt{cp}}
+\begin{lstlisting}[language=bash]
+$ ls -a
+.   .git    docs    package.json
+..  .gitignore  gulpfile.js
+.DS_Store   README.md   node_modules
+.eslintrc   app package-lock.json
+\end{lstlisting}
 
-\section{\texttt{rm}}
+As you can see a hidden folder \texttt{.git} and a hidden file \texttt{.gitignore} are displayed.
 
-\section{\texttt{mv}}
+\subsection{\texttt{cd}}
+
+\texttt{cd} stands for change directory, self explanatory ;). Use \texttt{cd ..} to go back to the previous directory (to go out one folder). 
+
+\begin{lstlisting}[language=bash]
+# KidProf in ~
+$ cd code
+
+# KidProf in ~/code
+$ cd ..
+
+# KidProf in ~
+\end{lstlisting}
+
+\subsection{\texttt{pwd}}
+
+\texttt{pwd} shows the current directory you are in in full. As shown in chapter1 it makes it easier for you to locate our work folder in Finder/ File Explorer.
+
+\begin{lstlisting}[language=bash]
+# KidProf in ~
+$ pwd
+/Users/KidProf
+\end{lstlisting}
+
+\subsection{\texttt{touch}}
+
+Creates a new file. For example, \texttt{touch test.txt}
+
+\subsection{\texttt{mkdir}}
+
+Creates a new folder. For example, \texttt{mkdir code}
+
+\subsection{\texttt{--version}}
+
+To check the version of a certain software. It is commonly used to verify that you have installed the software correctly. 
+
+\begin{lstlisting}[language=bash]
+(node is installed)
+$ node --version
+v16.14.0
+
+(node is not installed)
+$ node --version
+bash: command not found: node
+\end{lstlisting}
+
+\section{A word on directories}
+
+\texttt{.} refers to the current directory.
+
+\texttt{..} refers to the previous directory.
+
+\texttt{$\sim$} refers to the home directory, it is the initial directory when you open the command line. In the \texttt{pwd} example, you can see the home directory of my Mac is \texttt{/Users/KidProf}. You should do most of your work inside this home directory. To go back to the home directory, do \texttt{cd $\sim$} This is useful when you get stuck in some other directories.
+
+When the path is not prepended with a \texttt{/}, it is a relative path. Meaning that it is relative to the current directory.
+
+When the path is prepended with a \texttt{/}, it is an absolute path. 
+
+\begin{lstlisting}[language=bash]
+(cd to an relative path)
+# KidProf in ~
+$ cd code
+
+# KidProf in ~/code
+
+(cd to an absolute path)
+# KidProf in ~
+$ cd /Users/KidProf/code
+
+# KidProf in ~/code
+\end{lstlisting}
 
 \section{General Tips}
+
+\textit{Covered in \href{https://www.youtube.com/watch?v=oIsH0V3fRt8&list=PLjGmdnqrOKuYXiu7lgG5HW71jPEUd1XCm&index=2}{video 1 of the series}}
+\vspace{6mm}
+
+Use up and down arrow to navigate your command history. Very useful when you are calling the same command repeatedly or when you made some typos.
+
+Press \texttt{ctrl+C} to .... % TODO
+
+\section{More commands}
+
+\textit{Advanced, }
+\textit{covered in \href{https://www.youtube.com/watch?v=ZIBEVGrtiVA&list=PLjGmdnqrOKuYXiu7lgG5HW71jPEUd1XCm&index=7}{video 6a of the series}}
+\vspace{6mm}
+
+\subsection{\texttt{cp}}
+
+\subsection{\texttt{rm}}
+
+\subsection{\texttt{mv}}
+
+\section{Vim - command line text editor}
+
+\textit{Advanced}
+\vspace{6mm}
+
+The default text editor is called Vim. It may appear when you run some commands that require messages to be inputted, for example, \texttt{git commit} \textit{(More in Chapter 3)}.
+
+Unfortunately, it is quite difficult to use and needs some time to get used to. So I tried my best to provide alternative commands that prevent this text editor from popping up, for example, using \texttt{git commit -m "message"}
+
+However, here are the basics of using Vim, so that you will not get too lost when you encounter it. You can practice by entering \texttt{vim} in the command line.
+
+You start in a mode called "normal mode". You can’t immediately type anything.
+
+In order to get typing press \texttt{i} (stands for insert). This will bring you to "insert mode", so named because in this mode you can actually type.
+
+When you are done typing press \texttt{esc}. This will bring you back to "normal mode".
+
+In order to save your work you want to type :w and press return. And in order to exit vim you want to type \texttt{:q} and press return. Because saving and quitting is a very common action, there is actually a shortcut \texttt{:x}, which stands for \texttt{:wq} (which just combines \texttt{:w} and \texttt{:q}).\footnote{Reference: \url{https://web.mit.edu/6.005/www/fa14/tutorial/git/config.html}}
+
+
+If you do not wish to save the file, you can use \texttt{:q!}
 
 

@@ -18,6 +18,7 @@
 \usepackage{tablefootnote} % ability to use table footnotes in table using command \tablefootnotes
 \usepackage{multirow} % ability to merge rows using \mergerow
 \usepackage{makecell} % ability to have line breaks inside tables
+% \usepackage{url} % disable escape characters in url by \url{}
 \usepackage{imakeidx} % add an index for the document
 \makeindex % add an index for the document
 % configure hyperref, display the contents page as its usual black color
@@ -64,11 +65,14 @@
 
 
 \maketitle                  % create a title page from the preamble info
+
+\begin{romanpages}          % start roman page numbering
+
 \include{dedication}        % include a dedication.tex file
 \include{acknowlegements}   % include an acknowledgements.tex file
 \include{abstract}          % include the abstract
 
-\begin{romanpages}          % start roman page numbering
+
 \tableofcontents            % generate and include a table of contents
 % \listoffigures              % generate and include a list of figures
 \end{romanpages}            % end roman page numbering
