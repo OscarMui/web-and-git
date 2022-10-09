@@ -7,11 +7,11 @@ Probably the most complicated installation procedure you have ever seen. However
 
 \section*{For those of you not using Git}
 
-You would still need to perform step 1: install Git Bash if you are using a Windows machine.\footnote{Because the Windows CMD uses slightly different command keywords.}
+You would still need to perform \hyperref[sec:install1]{step 1: install Git Bash} if you are using a Windows machine.\footnote{Because the Windows CMD uses slightly different command keywords.}
 
-You can download the code as a zip file \href{https://github.com/KidProf/static-web-sandbox}{here}.\footnote{Link: \href{https://github.com/KidProf/static-web-sandbox}{https://github.com/KidProf/static-web-sandbox}}\textit{(see figure)} You do not need a GitHub account to do so. 
+You can download the code as a zip file \href{https://github.com/KidProf/static-web-sandbox}{here}.\footnote{Link: \url{https://github.com/KidProf/static-web-sandbox}}\textit{(see figure)} You do not need a GitHub account to do so. 
 
-After that, proceed with step 5: Creating a folder using command line, and unzip your code inside the folder, then proceed with step 7: Installing node.js
+After that, proceed with \hyperref[sec:install5]{step 5: Creating a folder using command line}, and unzip your code inside the folder, then proceed with \hyperref[sec:install7]{step 7: Installing node.js} and onwards.
 
 \begin{figure}[h]
 \centering
@@ -21,19 +21,20 @@ After that, proceed with step 5: Creating a folder using command line, and unzip
 
 
 \section{Git Bash (for Windows only)}
+\label{sec:install1}
 
 \textit{If you are using MacOS or Linux, skip to step 2: Creating a GitHub account}
 \vspace{6mm}
 
-Download Git Bash by following \href{https://git-scm.com/download/win}{this link}.\footnote{Link: \href{https://git-scm.com/download/win}{https://git-scm.com/download/win}} It should be straightforward.
+Download Git Bash by following \href{https://git-scm.com/download/win}{this link}.\footnote{Link: \url{https://git-scm.com/download/win}} It should be straightforward.
 
 \section{Creating a GitHub account}
 
-Create your own GitHub account \href{https://github.com/}{here}.\footnote{Link: \href{https://github.com/}{https://github.com/}} It should be straightforward. Remember the email you used for registration.
+Create your own GitHub account \href{https://github.com/}{here}.\footnote{Link: \url{https://github.com/}} It should be straightforward. Remember the email you used for registration.
 
 \section{Creating a new repository using the template}
 
-Open my template by following \href{https://github.com/KidProf/static-web-sandbox}{this link}.\footnote{Link: \href{https://github.com/KidProf/static-web-sandbox}{https://github.com/KidProf/static-web-sandbox}} Then click the big green button \textit{Use this template}. You will be prompted to create a new repository. \textbf{Repository is a fancier word for project, sometimes abbreviated to repo.} Provide a repository name (a.k.a. project name) of your choice, preferably something meaningful; and you can set it either to public or private based on your own preference. You can change these two settings in the future. Do not change up any other settings in this page. \textit{(see figure)}
+Open my template by following \href{https://github.com/KidProf/static-web-sandbox}{this link}.\footnote{Link: \url{https://github.com/KidProf/static-web-sandbox}} Then click the big green button \textit{Use this template}. You will be prompted to create a new repository. \textbf{Repository} is a fancier word for project, sometimes abbreviated to \textbf{repo}. Provide a repository name (a.k.a. project name) of your choice, preferably something meaningful; and you can set it either to public or private based on your own preference. You can change these two settings in the future. Do not change up any other settings in this page. \textit{(see figure)}
 
 \begin{figure}[h]
 \centering
@@ -45,10 +46,10 @@ Open my template by following \href{https://github.com/KidProf/static-web-sandbo
 
 An SSH key is to verify your identity on your local machine, so that you can access and manage your repositories on GitHub from your local machine.
 
-Follow \href{https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent}{this tutorial}\footnote{Link: \href{https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent}{https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent}}, then \href{https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account}{this tutorial}\footnote{Link: \href{https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account}{https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account}}, and you are good to go. 
+Follow \href{https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent}{this tutorial}\footnote{Link: \url{https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent}}, then \href{https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account}{this tutorial}\footnote{Link: \url{https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account}}, and you are good to go. 
 \vspace{6mm}
 
-Use Git Bash if you are on a Windows machine, use the Terminal if you are on a MacOS or Linux machine. There is no need to understand and remember the commands, copying and pasting is one of the skills needed to be a good programmer. \textbf{The \$ symbol indicates the start of a command, so you do not need to copy it again.}
+Use Git Bash if you are on a Windows machine, use the Terminal if you are on a MacOS or Linux machine. There is no need to understand and remember the commands, copying and pasting is one of the skills needed to be a good programmer. \textbf{The \$ symbol indicates the start of a command, so you do not need to copy the \$ symbol.}
 \vspace{6mm}
 
 For example, if I am using a Windows machine, I would run the following set of commands in my Git Bash line by line. Remember replace the email with your own email used to register for the GitHub account!
@@ -63,11 +64,118 @@ $ clip < ~/.ssh/id_ed25519.pub
 Then paste the SSH public key to the appropriate spot on the GitHub website according to the tutorials.
 
 \section{Creating a folder using command line}
+\label{sec:install5}
+
+From now on, I would use the term \textbf{command line} to refer to Git Bash if you are on a Windows machine, and the Terminal if you are on a MacOS or Linux machine. 
+
+So now open the command line, use \texttt{mkdir} followed by a folder name to create a new folder to store your code. Then, use \texttt{cd} followed by the folder name to enter to that folder.
+
+\begin{lstlisting}[language=bash]
+# KidProf in ~
+$ mkdir code
+
+# KidProf in ~
+$ cd code
+
+# KidProf in ~/code
+$ 
+\end{lstlisting}
 
 \section{Downloading the code using SSH key}
 
+Go back to your project on GitHub, click the big green button \textit{Code}, then remember to select \texttt{SSH}, then copy the URL given.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=15cm]{images/ch1-git-clone.png}
+\caption{Getting the URL to download your project}
+\end{figure}
+
+Use \texttt{git clone}, followed by pasting the URL obtained from GitHub. You should use your mouse to paste the URL in the classic way, as \texttt{ctrl+V} would not work.
+
 \section{Installing node.js}
+\label{sec:install7}
+
+Download node.js by following \href{https://nodejs.org/en/}{this link}.\footnote{Link: \url{https://nodejs.org/en/}} It should be straightforward. You should download the LTS\footnote{stands for long term support} version.
 
 \section{Installing dependencies for the project}
 
+Open your command line, \texttt{cd} into the folder with the code in, run \texttt{npm install}. A new folder called \texttt{node\textunderscore modules} will be automatically created, with everything you need to use this project installed within that folder.
+
+\begin{lstlisting}[language=bash]
+# KidProf in ~
+$ cd code
+
+# KidProf in ~/code
+$ cd tutorial-website
+
+# KidProf in ~/code/tutorial-website
+$ npm install
+\end{lstlisting}
+
+\section{Opening the web page}
+
+Run \texttt{npm run build} to build the web page, more on this would be explained in \hyperref[sec:ch4]{chapter 4}.
+
+Then, open the folder containing the project in file explorer/ finder. Go to the \texttt{docs} folder, open \texttt{index.html} using a web browser of your choice.
+
+If you are unsure where your code is located, try running \texttt{pwd} in your command line, that should show you the full path that your code should be in.
+
+\begin{lstlisting}[language=bash]
+# KidProf in ~/code/tutorial-website on git:main 
+$ npm run build
+
+> static-web-sandbox@2.0.0 build
+> gulp build
+
+[09:56:22] Using gulpfile ~/code/tutorial-website/gulpfile.js
+[09:56:22] Starting 'build'...
+[09:56:22] Starting 'js'...
+[09:56:22] Finished 'js' after 38 ms
+[09:56:22] Starting 'pug'...
+[09:56:22] Finished 'pug' after 83 ms
+[09:56:22] Starting 'styling'...
+[09:56:22] Finished 'styling' after 37 ms
+[09:56:22] Starting 'imagecopy'...
+[09:56:22] Finished 'imagecopy' after 2.67 ms
+[09:56:22] Starting 'fontcopy'...
+[09:56:22] Finished 'fontcopy' after 1.42 ms
+[09:56:22] Finished 'build' after 164 ms
+
+# KidProf in ~/code/tutorial-website on git:main 
+$ pwd
+/Users/KidProf/code/tutorial-website
+\end{lstlisting}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=15cm]{images/ch1-indexhtml.png}
+\caption{What index.html should look like}
+\end{figure}
+
+
 \section{Installing VS Code}
+
+Visual Studio Code (VS Code) is a text editor, with highlighted syntax and many more user-friendly features for you to code efficiently.
+
+Download VS Code by following \href{https://code.visualstudio.com/}{this link}.\footnote{Link: \url{https://code.visualstudio.com/}} It should be straightforward.
+
+\label{sec:pwdch1}
+Then, open VS Code and open the folder containing the code. If you are unsure where your code is located, try running \texttt{pwd} in your command line, that should show you the full path that your code should be in.
+
+There are a number of extensions available in VS Code, but I think they are not necessary for beginners.
+\vspace{6mm}
+
+This marks the end of the installation marathon. I hope you have learned some basic command line commands along the way, we will formally introduce them in \hyperref[sec:cmd]{the next chapter.}
+
+\section{Optional QOL tools for MacOS}
+\textit{Of less importance, covered in \href{https://www.youtube.com/watch?v=ZIBEVGrtiVA&list=PLjGmdnqrOKuYXiu7lgG5HW71jPEUd1XCm&index=7}{video 6a of the series}}
+\vspace{6mm}
+
+Refer to the video.
+
+\section{Optional VS Code Plugins}
+\textit{Of less importance}
+\vspace{6mm}
+
+Refer to the very last section of \href{https://github.com/OscarMui/setup-cheetsheet-macos}{my setup cheetsheet}\footnote{Link: \url{https://github.com/OscarMui/setup-cheetsheet-macos}} (last part works for all operating systems)

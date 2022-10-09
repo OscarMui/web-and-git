@@ -1,4 +1,9 @@
 \chapter{Command Line}
+\label{sec:cmd}
+
+Command line is important because you can work more efficiently if you are proficient at command line tools. And you will come across some situations where only command line is available (e.g. when accessing a remote server).
+
+I would use the term \textbf{command line} to refer to Git Bash if you are on a Windows machine, and the Terminal if you are on a MacOS or Linux machine. 
 
 \section{Basic commands}
 
@@ -7,6 +12,7 @@
 \subsection{\texttt{ls}}
 
 \texttt{ls} stands for list. Lists out the files and folders you have in your current directory. \textbf{Directory is another word for folder.}
+\vspace{6mm}
 
 \begin{lstlisting}[language=bash]
 $ ls
@@ -29,6 +35,7 @@ As you can see a hidden folder \texttt{.git} and a hidden file \texttt{.gitignor
 \subsection{\texttt{cd}}
 
 \texttt{cd} stands for change directory, self explanatory ;). Use \texttt{cd ..} to go back to the previous directory (to go out one folder). 
+\vspace{6mm}
 
 \begin{lstlisting}[language=bash]
 # KidProf in ~
@@ -42,7 +49,8 @@ $ cd ..
 
 \subsection{\texttt{pwd}}
 
-\texttt{pwd} shows the current directory you are in in full. As shown in chapter1 it makes it easier for you to locate our work folder in Finder/ File Explorer.
+\texttt{pwd} shows the current directory you are in in full. As shown in \hyperref[sec:pwdch1]{chapter 1} it makes it easier for you to locate our work folder in Finder/ File Explorer.
+\vspace{6mm}
 
 \begin{lstlisting}[language=bash]
 # KidProf in ~
@@ -57,7 +65,9 @@ Creates a new file. For example, \texttt{touch test.txt}
 \subsection{\texttt{mkdir}}
 
 Creates a new folder. For example, \texttt{mkdir code}
+\vspace{6mm}
 
+It is not advised to have spaces in folder and file names, but if you somehow wanted to, you have to surround the name with double quotes, for instance, \texttt{touch "file with space.txt"} and \texttt{mkdir "folder with space"}.
 \subsection{\texttt{--version}}
 
 To check the version of a certain software. It is commonly used to verify that you have installed the software correctly. 
@@ -73,12 +83,14 @@ bash: command not found: node
 \end{lstlisting}
 
 \section{A word on directories}
-
+\label{sec:dir}
 \texttt{.} refers to the current directory.
 
 \texttt{..} refers to the previous directory.
+\vspace{6mm}
 
 \texttt{$\sim$} refers to the home directory, it is the initial directory when you open the command line. In the \texttt{pwd} example, you can see the home directory of my Mac is \texttt{/Users/KidProf}. You should do most of your work inside this home directory. To go back to the home directory, do \texttt{cd $\sim$} This is useful when you get stuck in some other directories.
+\vspace{6mm}
 
 When the path is not prepended with a \texttt{/}, it is a relative path. Meaning that it is relative to the current directory.
 
@@ -104,27 +116,68 @@ $ cd /Users/KidProf/code
 \vspace{6mm}
 
 Use up and down arrow to navigate your command history. Very useful when you are calling the same command repeatedly or when you made some typos.
+\vspace{6mm}
 
-Press \texttt{ctrl+C} to .... % TODO
+Use \texttt{tab} for auto completing file and folder names.
+\vspace{6mm}
+
+Use \texttt{ctrl+C} to terminate any process, useful when a certain process got stuck or your accidentally run something that you should not run. 
+This makes it impossible to use \texttt{ctrl+C} as the copy shortcut, this also applies to cut and paste shortcuts. instead, just use your mouse. There are shortcuts specifically for git bash for these operations but I would not bother to remember them.
+\vspace{6mm}
 
 \section{More commands}
 
 \textit{Advanced, }
-\textit{covered in \href{https://www.youtube.com/watch?v=ZIBEVGrtiVA&list=PLjGmdnqrOKuYXiu7lgG5HW71jPEUd1XCm&index=7}{video 6a of the series}}
+\textit{covered in \href{https://www.youtube.com/watch?v=U0bDr7b2cOM&list=PLjGmdnqrOKuYXiu7lgG5HW71jPEUd1XCm&index=8}{video 6 of the series}}\footnote{Thank you TL;DR for the simplified documentation in this section.}
 \vspace{6mm}
-
-\subsection{\texttt{cp}}
 
 \subsection{\texttt{rm}}
 
+\texttt{rm} stands for remove. Remove files or directories.
+\vspace{6mm}
+
+Remove a file: 
+
+\texttt{rm path/to/file path/to/another/file}
+\vspace{6mm}
+
+Remove a directory:
+
+\texttt{rm \textbf{-rf} path/to/directory}
+\vspace{6mm}
+
+\texttt{-r} stands for recursively, it is needed when you remove or copy directories. \texttt{-f} stands for forcibly, it is needed when you remove directories so that the command line will not prompt you again and again for confirmation.
+
+\subsection{\texttt{cp}}
+
+\texttt{cp} stands for copy. Copies files and directories.
+\vspace{6mm}
+
+Copy a file to another location:
+
+\texttt{cp path/to/source\textunderscore file.ext path/to/target\textunderscore file.ext}
+\vspace{6mm}
+
+Copy a directory to another location: (again \texttt{-r} is needed)
+
+\texttt{cp \textbf{-r} path/to/source\textunderscore directory path/to/target\textunderscore directory}
+
 \subsection{\texttt{mv}}
 
+\texttt{mv} stands for move. Move files and directories. It is also useful in renaming the files and directories.
+\vspace{6mm}
+
+Move a file or directory to an arbitrary location:
+
+\texttt{mv source target}
+
 \section{Vim - command line text editor}
+\label{sec:vim}
 
 \textit{Advanced}
 \vspace{6mm}
 
-The default text editor is called Vim. It may appear when you run some commands that require messages to be inputted, for example, \texttt{git commit} \textit{(More in Chapter 3)}.
+The default text editor is called Vim. It may appear when you run some commands that require messages to be inputted, for example, \texttt{git commit} \textit{(More in \hyperref[sec:gcmsg]{Chapter 3})}.
 
 Unfortunately, it is quite difficult to use and needs some time to get used to. So I tried my best to provide alternative commands that prevent this text editor from popping up, for example, using \texttt{git commit -m "message"}
 

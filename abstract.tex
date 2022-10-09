@@ -17,7 +17,7 @@ Basic coding experience (e.g. variables, loops) in any programming languages (e.
 
 \section{Way to read the notes}
 
-I think this piece of notes is like a dictionary. You should not read it in sequence, but read the related sections when you want to learn more about the topic or if my teaching isn't detailed enough. 
+\textbf{I think this piece of notes is like a dictionary. You do not need to read the whole piece of notes.} You should also not read it in sequence, but read the related sections when you want to learn more about the topic or if my teaching isn't detailed enough. 
 \vspace{6mm}
 
 However, I understand that some of you might want to understand the material without either attending my course or watching my teaching videos, so I marked the less essential sections with \textit{Advanced} or \textit{Of less importance}. You can read the sections without the markings first, then those with \textit{Advanced}, then those with \textit{Of less importance}.
@@ -37,17 +37,35 @@ In contrast, you can only code mobile apps for one specific platform\footnote{Of
 
 \subsection*{Command line and Git}
 
-Learning how to make a website is just a facade. The most important thing that you will take away is the use of command line and Git. Command line is important because you can work more efficiently if you are proficient at command line tools, you will come across some situations where only command line is available (e.g. when accessing a remote server). 
+Learning how to make a website is just a facade. The most important thing that you will take away is the use of command line and Git.
+
+Command line is important because you can work more efficiently if you are proficient at command line tools. And you will come across some situations where only command line is available (e.g. when accessing a remote server). 
+
+Git is important because it allows you to work and communicate with people using just a few simple commands. By following its rules and conventions, you can work with others efficiently, without having to send zip files back and forth through emails. 
+
+\subsection*{Can I use GitHub Desktop or similar visualisation tools in place for command line?}
+
+Not really. Git is a command line tool and is best used through the command line. Again, you will come across some situations where only command line is available (e.g. when accessing a remote server). 
+
+However, it is acceptable if you just want to visualise the git commit history. Just don't run any commands using those visualisation software. \textit{\hyperref[sec:sublime]{See chapter 3}}
 
 \subsection*{Why not plain HTML?}
 
-Pug.js allows the use of templates, hence there is no need to modify every page file whenever we need to something that every page has in common. Pug.js also allows the use of variables, so that we can control what to be rendered based on the situation, hence providing a basis for building dynamic websites.\footnote{Dynamic websites are those that could interact with backend servers and databases securely. A framework that you can learn after mastering this piece of notes is ExpressJS. Link: \href{https://expressjs.com/}{https://expressjs.com/}}
+Pug.js allows the use of templates, hence there is no need to modify every page file whenever we need to something that every page has in common. Pug.js also allows the use of variables, so that we can control what to be rendered based on the situation, hence providing a basis for building dynamic websites. \textit{(see \hyperref[sec:limitations]{limitations})}
 
 \subsection*{Responsiveness}
 
 Mobile devices are common nowadays, so our website has to cater for screens with different sizes, from those as small as mobile phones to those as big as projectors. 
 
 A website is responsive if it can rearrange its elements for easy readability based on the screen size and orientation. The use of Bootstrap makes our website responsive.
+
+\section{Scope and limitations}
+\label{sec:limitations}
+We will focus on styling and making the web page responsive. Our styles would be neat, but without too many animations, making them suitable for serious applications such as e-commerce, or a self-introduction website, while not too suitable for websites for fun.
+
+We will not focus much on providing interactions with users, so JavaScript is not used throughout this piece of notes, however, you could definitely add interactions on your own.
+
+The websites that we are making are static. That means we cannot interact interact with backend servers and databases securely. While dynamic websites can, a framework that you can learn after mastering this piece of notes is \href{https://expressjs.com/}{ExpressJS}.\footnote{Link: \url{https://expressjs.com/}}
 
 \section{A word of warning}
 
@@ -57,36 +75,36 @@ This is just a draft, aiming to include everything in the shortest amount of tim
 
 Video series:
 
-\href{https://www.youtube.com/playlist?list=PLjGmdnqrOKuYXiu7lgG5HW71jPEUd1XCm}{https://www.youtube.com/playlist?list=PLjGmdnqrOKuYXiu7lgG5HW71jPEUd1XCm}
-\vspace{0mm} % SPECIAL
+\url{https://www.youtube.com/playlist?list=PLjGmdnqrOKuYXiu7lgG5HW71jPEUd1XCm}
+\vspace{6mm}
 
 Example website:
 
-\href{https://numbersarefun.netlify.app/}{https://numbersarefun.netlify.app/}
+\url{https://numbersarefun.netlify.app/}
 \vspace{6mm}
 
 Template for you to start from scratch:
 
-\href{https://github.com/KidProf/static-web-sandbox}{https://github.com/KidProf/static-web-sandbox}
+\url{https://github.com/KidProf/static-web-sandbox}
 \vspace{6mm}
 
 Source code of the finished website:
 
-\href{https://github.com/KidProf/numbersarefun-sample-temp}{https://github.com/KidProf/numbersarefun-sample-temp}
+\url{https://github.com/KidProf/numbersarefun-sample-temp}
 \vspace{6mm}
 
 Pug.js: 
 
-\href{https://pugjs.org/}{https://pugjs.org/}
+\url{https://pugjs.org/}
 \vspace{6mm}
 
 Less: 
 
-\href{https://lesscss.org/}{https://lesscss.org/}
+\url{https://lesscss.org/}
 \vspace{6mm}
 
 Bootstrap: 
 
-\href{https://getbootstrap.com/}{https://getbootstrap.com/}
+\url{https://getbootstrap.com/}
 \vspace{6mm}
 
