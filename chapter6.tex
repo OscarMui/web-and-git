@@ -1,15 +1,77 @@
 \chapter{Styling}
+\label{sec:ch6}
 
-\section{Styling by classes and IDs}
+Less is used in place of CSS, to provide syntactic sugars\footnote{"Syntactic sugar" is a term for syntax changes in computer programming which make it easier for humans to code.} for us to make our lives easier, including nested styles and variables. 
 
+Note that all knowledge you have learnt for CSS can be transferable to Less, because Less is a superset of CSS. However, we will start from scratch for those of you who have not learnt CSS before.
+
+\section{Further Resources (Ch 6)}
+
+I didn't have this piece of notes back when I first learned Less. Here is \href{https://youtu.be/YD91G8DdUsw}\footnote{Link: \url{https://youtu.be/YD91G8DdUsw}{the video}} that I used to learn the basics. 
+
+You could refer to the \href{https://www.w3schools.com/cssref/}{w3schools documentation}\footnote{Link: \url{https://www.w3schools.com/cssref/}} to learn how to use some more styling tools.
+
+\section{Referencing elements using classes and IDs}
+
+In this section we will investigate ways to reference the elements we created in the Pug files, so that we can add styles for them.
+
+The easiest way is to reference them using tags, the style below applies to all \texttt{h1} tags in the whole web page. Each style is followed by a semi-colon, and curly braces are used to surround all the styles for the same tag.
+
+\begin{lstlisting}[language=pug]
+h1{
+    color: red;
+}
+\end{lstlisting}
+
+However, making all the \texttt{h1} tags red is not usually what we want. To style for specific elements, we would add a class or an ID to the element in the pug file, then reference the class or ID in our less file.
+
+For example, referring to the code from the \hyperref[sec:classesids]{previous chapter on classes and IDs}, we can write styles to center align the self introduction, and highlight specified items in the shopping list yellow and italic.
+
+\begin{lstlisting}[language=pug]
+#self-intro{
+    text-align: center;
+}
+.warning{
+    color: yellow;
+    font-style: italic;
+}
+\end{lstlisting}
+
+We would explain the effect and syntax of different styles in detail in later sections. The difference between using IDs and classes would be explained in the \hyperref[sec:nestedstyles]{nested styles session}.
 
 \section{Text}
 
 \subsection{Text colour}
 
+This changes the colour of the text. Use the \texttt{color}\footnote{Sorry it has to be American spelling :(} keyword, followed by a colon, then specify your colour before finishing off with a semi-colon.
+
+The colour can be specified in \href{https://www.rapidtables.com/web/color/RGB_Color.html}{RGB colour codes}\footnote{Choose your colour: \url{https://www.rapidtables.com/web/color/RGB_Color.html}}, e.g. \texttt{\#FFFFFF} indicates white. \href{https://www.w3.org/wiki/CSS/Properties/color/keywords}{Common colours}\footnote{Full list of "common" colours: \url{https://www.w3.org/wiki/CSS/Properties/color/keywords}} can be specified in text for your convenience, as shown in the previous section.
+
+\begin{lstlisting}
+h1{
+    color: #FFFF00;
+}
+\end{lstlisting}
+
 \subsection{Background colour}
 
+\texttt{background-color} sets the colour of the background. The default value is \texttt{transparent}. It is important to distinguish between a white background and a transparent background. More on background colour in \hyperref[sec:margin]{the section on margin and paddings}.
+
+\begin{lstlisting}[language=pug]
+#self-intro{
+    background-color: #777; //#777 is equivalent to #777777
+}
+\end{lstlisting}
+
 \subsection{Text alignment}
+
+\texttt{text-align} sets the alignment of text. It accepts values \texttt{left} (default), \texttt{center}\footnote{Note the American spelling}, \texttt{right}, and \texttt{justify}\footnote{Sometimes \texttt{justify} might not work very well, if so just use \texttt{left} instead.}
+
+\begin{lstlisting}[language=pug]
+#self-intro{
+    text-align: right;
+}
+\end{lstlisting}
 
 \section{Positioning}
 
@@ -20,6 +82,7 @@
 \subsection{Flexbox}
 
 \section{Margins, paddings and borders}
+\label{sec:margin}
 
 \subsection{Margins}
 
@@ -34,6 +97,7 @@
 \subsection{Italics}
 
 \section{Nested styles}
+\label{sec:nestedstyles}
 
 \subsection{Styling priority}
 

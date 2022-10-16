@@ -12,11 +12,13 @@ The \texttt{app} folder contains everything you need to generate the website. Th
 
 \section{Pug files}
 
-Pug files are translated into HTML files, they provide the basic structure of the web page. All Pug files should be put inside \texttt{app/templates}.
+Pug files act as template files, we will just call them \textbf{pug files} in this piece of notes. They are translated into HTML files and provide the basic structure of the web page. All Pug files should be put inside \texttt{app/templates}.
 
 \subsection*{Views}
 
 The \texttt{app/templates/views} folder contains the content body of each page. Each Pug file in this folder would be translated to an HTML file with the same name in \texttt{docs}. As you can see, \texttt{abouts.pug} is translated into \texttt{abouts.html} while \texttt{index.pug} is translated into \texttt{index.html}. They all \texttt{extends ../layouts/default}, meaning that they follow the layout in \texttt{app/templates/layouts/default.pug}, which we will look at in a second. (Reminder: \texttt{..} means previous directory)
+
+\texttt{index.pug} (later translated to \texttt{index.html}) is the homepage of the web site. When you host the web page onto a web server, the index page will also be shown when you just type in the URL without specifying which HTML file you want to read. You are advised to have an \texttt{index.pug} file in every project.
 
 \subsection*{Layouts}
 
@@ -36,13 +38,17 @@ The navbar and footer are separated from the \texttt{default.pug} to make it cle
 
 \section{Styling files}
 
-We will be using less files for styling in place for CSS, which are placed under \texttt{app/styles}. The \texttt{site.less} file includes all files under the \texttt{app/styles/site} folder, \textbf{remember to add the file to \texttt{site.less} whenever you are creating a new less file}. 
+We will be using less files for styling in place for CSS, which are placed under \texttt{app/styles}. We will call them \textbf{Styling files} in this piece of notes. The \texttt{site.less} file includes all files under the \texttt{app/styles/site} folder, \textbf{remember to add the file to \texttt{site.less} whenever you are creating a new less file}. 
 
 The files under the \texttt{site} folder should be where you write the styles. By convention, \texttt{layout.less} should contain styles that is used in all/ multiple pages; \texttt{variables.less} should contain all variables; and other files should contain styles that is only used in the page with the same name as the style file. This is just a convention but not a rule, there is nothing to enforce it until \hyperref[sec:confinestyles]{chapter 8}.
 
 When we run \texttt{npm run build}, the styles got translated into CSS and put into a single file \texttt{docs/styles/site.css}. The stylesheet is imported into all HTML files in line 18 of \texttt{layout.pug}.
 
-\section{Generated Files}
+\section{Images}
+
+Place all the images or other assets you need for the website under \texttt{\textbf{app}/images} folder. Do not put them inside \texttt{dist}! We will discuss the reasons for that in the next section. 
+
+\section{Website generation}
 
 We kept mentioning \texttt{npm run build} as if it is some sort of magic, now it's time to look a little bit closer.
 
@@ -128,6 +134,9 @@ gulp.task('build',gulp.series('js','pug','styling','imagecopy','fontcopy'));
 
 This folder is automatically generated when you run \texttt{run build}.\footnote{To verify, remove this folder using \texttt{rm -rf docs} and run \texttt{npm run build} again.} It is the output folder of the whole project, you can directly open the HTML files inside the folder. You should upload this folder to web servers in order to host it.
 \textit{You do not need to edit this file at all.}
+\vspace{6mm}
+
+\textbf{IMPORTANT: Do NOT edit anything in the \texttt{docs} folder. Changes will be overwritten when you run \texttt{npm run build} again.}
 
 \subsection{\texttt{.gitignore}}
 \label{sec:gitignore}
@@ -144,5 +153,15 @@ This file serves as a documentation. It will be displayed on GitHub. You should 
 \subsection{\texttt{.eslintrc}}
 
 \textit{Of less importance}
-
+\vspace{6mm}
 This file stores the JavaScript settings and version we are using, so as to check for syntax errors when copying JavaScript files from \texttt{app} to \texttt{docs}. \textit{You do not need to edit this file at all.}
+
+\section{VS Code Tips}
+
+You can run \texttt{code .} in your terminal to open VS Code with the directory opened, it is very convenient. If you can't get it to work, try setting up the environment variables as instructed \href{https://code.visualstudio.com/docs/setup/mac}{here}\footnote{Link: \url{https://code.visualstudio.com/docs/setup/mac}}.
+\vspace{6mm}
+
+Another good tip is that you can highlight a few lines of text, and hit \texttt{tab}, and all those lines will be indented inwards; while hitting \texttt{shift+tab} will make them indent outwards.
+\vspace{6mm}
+
+As I have said before, it is not a must to install any plugins.
