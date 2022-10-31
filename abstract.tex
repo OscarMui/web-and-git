@@ -1,15 +1,12 @@
 \chapter*{Preface}
 
-This piece of notes covers one way of building a static website. It facilitates my live teaching sessions or my Web \& Git YouTube series.
+This piece of notes covers one way of building a \textbf{static} website. It facilitates my live teaching sessions or my Web \& Git YouTube series.
 \vspace{6mm}
 
-We use Pug.js (Sometimes abbreviated to Pug in this piece of notes) instead of HTML, less instead of CSS. And used gulp to translate the files back to HTML and CSS. The generated HTML files can be directly opened by the browser. We also included Bootstrap to make our static website responsive.
+We use \textbf{Pug.js} (sometimes abbreviated to Pug in this piece of notes) instead of HTML, \textbf{less} instead of CSS. And used gulp to translate the files back to HTML and CSS. The generated HTML files can be directly opened by the browser. We also included \textbf{Bootstrap} to make our static website responsive.
+\vspace{6mm}
 
-At the same time, we will be learning how to use Git and command line tools.
-
-\section{About me}
-
-I am a second-year undergraduate student studying Computer Science at the University of Oxford.
+At the same time, we will be learning how to use \textbf{Git} and \textbf{command line tools}.
 
 \section{Prerequisites}
 
@@ -17,29 +14,30 @@ Basic coding experience (e.g. variables, loops) in any programming languages (e.
 
 \section{Way to read the notes}
 
-\textbf{I think this piece of notes is like a dictionary. You do not need to read the whole piece of notes.} You should also not read it in sequence, but read the related sections when you want to learn more about the topic or if my teaching isn't detailed enough. 
+This piece of notes aims to fill the gaps of the online resources, and also acts as the bridge between different components of the project. It will not include every detail that you need to know, but I would try to include different online resources (documentations and YouTube tutorials) required in the form of hyperlinks along the way.
+
 \vspace{6mm}
 
-However, I understand that some of you might want to understand the material without either attending my course or watching my teaching videos, so I marked the less essential sections with \textit{Advanced} or \textit{Of less importance}. You can read the sections without the markings first, then those with \textit{Advanced}, then those with \textit{Of less importance}.
+I marked the less essential sections with \textit{Advanced} or \textit{Of less importance}. You can read the sections without the markings first, then those with \textit{Advanced}, then those with \textit{Of less importance}.
 
-\section{Rationale}
+\section{Why?}
 
 I would like to explain what I would like to achieve this piece of notes in this section, so as to manage your expectations.
 \vspace{6mm}
 
-\textbf{TL;DR: I believe what you will learn is useful in some way if you would like to pursue jobs related to IT, or dig deeper in programming and Computer Science. Knowledge in Git is also crucial for Maths and Science undergraduates as they also need to write code sometimes as a group.}
+\textbf{TL;DR: I believe what you will learn is useful in some way if you would like to pursue jobs related to IT, or dig deeper in programming and Computer Science. Knowledge in Git is also crucial for Maths, Statistics and science subjects undergraduates as they also need to write code sometimes as a group.}
 
 \subsection*{Why making websites?}
 
-A website is cross-platform, meaning that it can be opened on different kinds of devices, basically any device with a browser. From mobile phones, no matter it uses Android or iOS or whatever; to laptops and desktops, no matter it uses Windows or MacOS or Linux or whatever.
+Websites are cross-platform, meaning that they can be opened on different kinds of devices, basically any device with a browser. From mobile phones to laptops and desktops, no matter which operating system they are on (e.g. Windows, MacOS, Linux, Android, iOS).
 
-In contrast, you can only code mobile apps for one specific platform\footnote{Of course you can use Flutter or React Native, but they have their downsides}, Android apps cannot be installed on iOS devices. 
+On the other hand, you can only code mobile apps for one specific platform\footnote{Flutter or React Native are exceptions, but they have their downsides}. For instance, Android apps I built cannot be installed on iOS devices unfortunately.
 
 \subsection*{Command line and Git}
 
-Learning how to make a website is just a facade. The most important thing that you will take away is the use of command line and Git.
+Learning how to make a website is actually just a facade. The most important thing that I think you will take away with is the knowledge on command line and Git.
 
-Command line is important because you can work more efficiently if you are proficient at command line tools. And you will come across some situations where only command line is available (e.g. when accessing a remote server). 
+Knowing how to use the command line is important because you can work more efficiently if you are proficient at command line tools. And you will come across some situations where only command line is available (e.g. when accessing a remote server). 
 
 Git is important because it allows you to work and communicate with people using just a few simple commands. By following its rules and conventions, you can work with others efficiently, without having to send zip files back and forth through emails. 
 
@@ -47,11 +45,11 @@ Git is important because it allows you to work and communicate with people using
 
 Not really. Git is a command line tool and is best used through the command line. Again, you will come across some situations where only command line is available (e.g. when accessing a remote server). 
 
-However, it is acceptable if you just want to visualise the git commit history. Just don't run any commands using those visualisation software. \textit{\hyperref[sec:sublime]{See chapter 3}}
+However, it is acceptable if you just want to visualise the git commit history. Just don't run any commands using those visualisation software. (See \cref{sec:sublime})
 
 \subsection*{Why not plain HTML?}
 
-Pug.js allows the use of templates, hence there is no need to modify every page file whenever we need to something that every page has in common. Pug.js also allows the use of variables, so that we can control what to be rendered based on the situation, hence providing a basis for building dynamic websites. \textit{(see \hyperref[sec:limitations]{limitations})}
+Pug.js allows the use of templates, hence there is no need to modify every page file whenever we need to something that every page has in common. Pug.js also allows the use of variables, so that we can control what to be rendered based on the situation, hence providing a basis for building dynamic websites. (see \cref{sec:limitations} Scope and limitations)
 
 \subsection*{Responsiveness}
 
@@ -65,7 +63,7 @@ We will focus on styling and making the web page responsive. Our styles would be
 
 We will not focus much on providing interactions with users, so JavaScript is not used throughout this piece of notes, however, you could definitely add interactions on your own.
 
-The websites that we are making are static. That means we cannot interact interact with backend servers and databases securely. While dynamic websites can, a framework that you can learn after mastering this piece of notes is \href{https://expressjs.com/}{ExpressJS}.\footnote{Link: \url{https://expressjs.com/}}
+The websites that we are making are static. That means we cannot interact with back-end servers and databases securely, while dynamic websites can. A framework that you can learn after mastering this piece of notes is \href{https://expressjs.com/}{ExpressJS}.\footnote{Link: \url{https://expressjs.com/}}
 
 \section{A word of warning}
 
@@ -73,7 +71,10 @@ This is just a draft, aiming to include everything in the shortest amount of tim
 
 \section{Linktree}
 
-Video series:
+Useful links related to the notes.
+\vspace{6mm}
+
+Video series I made: \textit{(I have to admit they are not of the best quality, and the series is not finished yet)}
 
 \url{https://www.youtube.com/playlist?list=PLjGmdnqrOKuYXiu7lgG5HW71jPEUd1XCm}
 \vspace{6mm}

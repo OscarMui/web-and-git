@@ -21,6 +21,8 @@
 \usepackage{multirow} % ability to merge rows using \mergerow
 \usepackage{makecell} % ability to have line breaks inside tables
 \usepackage{imakeidx} % add an index for the document
+\usepackage{float} % to fix the position of tables, so that it won't go to another place
+\usepackage{cleveref} % Create references to different chapters
 \makeindex % add an index for the document
 % configure hyperref, display the contents page as its usual black color
 \hypersetup{ 
@@ -37,6 +39,11 @@
 
 \setlength{\parindent}{0pt} % disable indent of first line of each paragraph
 \graphicspath{ {./images/} } % configure graphicx
+
+%  Configure cleveref
+\crefformat{section}{\S#2#1#3} % see manual of cleveref, section 8.2.1
+\crefformat{subsection}{\S#2#1#3}
+\crefformat{subsubsection}{\S#2#1#3}
 
 % Include javascript syntax highlighting
 \definecolor{lightgray}{rgb}{.9,.9,.9}
@@ -78,13 +85,13 @@
 %and uncomment the next line)
 %\include{mymacros}
 
-\title{Web \& Git Dictionary}   %note \\[1ex] is a line break in the title
+\title{Web \& Git \\ (DRAFT)}   %note \\[1ex] is a line break in the title
 
 \author{Oscar Mui }             %your name
 \college{University College}  %your college
 
 % \renewcommand{Notes for}{change the default text here if needed}
-\degree{CompSoc Learn to Code } %\\[1ex] (in Python)     %the degree
+\degree{Learn to Code } %\\[1ex] (in Python)     %the degree
 \degreedate{Hilary 2023}         %the degree date
 
 %end the preamble and start the document

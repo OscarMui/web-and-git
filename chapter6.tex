@@ -1,15 +1,18 @@
 \chapter{Styling}
 \label{sec:ch6}
 
+We have wrote the contents for our abouts page in the previous chapter. Now let's make it look prettier.
+\vspace{6mm}
+
 Less is used in place of CSS, to provide syntactic sugars\footnote{"Syntactic sugar" is a term for syntax changes in computer programming which make it easier for humans to code.} for us to make our lives easier, including nested styles and variables. 
 
 Note that all knowledge you have learnt for CSS can be transferable to Less, because Less is a superset of CSS. However, we will start from scratch for those of you who have not learnt CSS before.
 
 \section{Further Resources (Ch 6)}
 
-I didn't have this piece of notes back when I first learned Less. Here is \href{https://youtu.be/YD91G8DdUsw}\footnote{Link: \url{https://youtu.be/YD91G8DdUsw}{the video}} that I used to learn the basics. 
+I didn't have this piece of notes back when I first learned Less. Here is \href{https://youtu.be/YD91G8DdUsw}{the video}\footnote{Link: \url{https://youtu.be/YD91G8DdUsw}} that I used to learn the basics. 
 
-You could refer to the \href{https://www.w3schools.com/cssref/}{w3schools documentation}\footnote{Link: \url{https://www.w3schools.com/cssref/}} to learn how to use some more styling tools.
+You could refer to the \href{https://www.w3schools.com/cssref/}{w3schools documentation}\footnote{Link: \url{https://www.w3schools.com/cssref/}} to learn how to use some more styling tools. However, there is no need to understand every CSS style, the common ones are listed below, and you can google search for the uncommon ones. :)
 
 \section{Referencing elements using classes and IDs}
 
@@ -25,14 +28,21 @@ h1{
 
 However, making all the \texttt{h1} tags red is not usually what we want. To style for specific elements, we would add a class or an ID to the element in the pug file, then reference the class or ID in our less file.
 
-For example, referring to the code from the \hyperref[sec:classesids]{previous chapter on classes and IDs}, we can write styles to center align the self introduction, and highlight specified items in the shopping list yellow and italic.
+For example, referring to the code from the \hyperref[sec:classesids]{previous chapter}, we can write styles to enlarge and bold some information on the reference book.
 
 \begin{lstlisting}[language=pug]
-#self-intro{
-    text-align: center;
+//- templates/styles/site/abouts.less
+.large-text{
+    font-size: 1.25rem;
 }
-.warning{
-    color: yellow;
+\end{lstlisting}
+
+Spaces when specifying the elements for styling means "inside". For example, the following style will affect all \texttt{h3} tags (where there is only one) \textbf{inside} the \texttt{\#quote} div.
+
+\begin{lstlisting}[language=pug]
+//- templates/styles/site/abouts.less
+#quote h3{
+    text-align: center;
     font-style: italic;
 }
 \end{lstlisting}
@@ -48,10 +58,97 @@ This changes the colour of the text. Use the \texttt{color}\footnote{Sorry it ha
 The colour can be specified in \href{https://www.rapidtables.com/web/color/RGB_Color.html}{RGB colour codes}\footnote{Choose your colour: \url{https://www.rapidtables.com/web/color/RGB_Color.html}}, e.g. \texttt{\#FFFFFF} indicates white. \href{https://www.w3.org/wiki/CSS/Properties/color/keywords}{Common colours}\footnote{Full list of "common" colours: \url{https://www.w3.org/wiki/CSS/Properties/color/keywords}} can be specified in text for your convenience, as shown in the previous section.
 
 \begin{lstlisting}
-h1{
-    color: #FFFF00;
+//- templates/styles/site/abouts.less
+.blue-text{
+    color: #00F; //equivalent to #0000FF
 }
 \end{lstlisting}
+
+\subsection{Text alignment}
+
+\texttt{text-align} sets the alignment of text. It accepts values \texttt{left} (default), \texttt{center}\footnote{Note the American spelling}, \texttt{right}, and \texttt{justify}\footnote{Sometimes \texttt{justify} might not work very well, if so just use \texttt{left} instead.}
+
+\begin{lstlisting}[language=pug]
+//- templates/styles/site/abouts.less
+#quote p{
+    text-align: right;
+}
+\end{lstlisting}
+
+\subsection{Font size}
+
+Use the \texttt{font-size} keyword. The interesting thing here is the unit. \texttt{rem} is the ideal unit for text, margins and paddings.\footnote{The reason behind is confusing, refer to \url{https://engageinteractive.co.uk/blog/em-vs-rem-vs-px} if interested.} Normal text should have a font size of 1 rem. Therefore, 1.25rem can be used to indicate a slightly larger text but not overwhelmingly large.
+
+\begin{lstlisting}[language=pug]
+//- templates/styles/site/abouts.less
+.large-text{
+    font-size: 1.25rem;
+}
+\end{lstlisting}
+
+\subsection{Bold and italic}
+
+\texttt{font-weight: bold;} makes the text bold while \texttt{font-style: italic;} makes the text italic. There is nothing to explain here, but I would like to stress that it is unnecessary to remember every CSS styles by heart. Whenever I need to make some text italic, which is seldom the case, I would search "italic css" and \texttt{font-style: italic;} would pop up. Moreover, there are other alternatives such as using HTML tags \texttt{i} and \texttt{b}.
+
+\section{Positioning}
+
+\subsection{Width and height}
+\label{sec:width}
+
+Set the width/ height of a certain element, usually an image. You can either specify it in pixels, or more interestingly, in percentage with respect to the screen. Setting width to be 100\% can be useful when paired with the grid system is quite a nice combo.
+
+\begin{lstlisting}[language=pug]
+//- see how it would look like...
+#bookofnumbers{
+    width: 100%;
+    height: 150px;
+}
+\end{lstlisting}
+
+\subsection{Grid system}
+\label{sec:grid}
+
+The grid system is provided by \href{https://getbootstrap.com/docs/5.2/layout/grid}{Bootstrap}\footnote{Full documentation: \url{https://getbootstrap.com/docs/5.2/layout/grid}}. The idea is to split the screen into 12 equal width columns. Then we allocate different number of columns to each element based on the screen size.
+
+There are 6 screen sizes, \texttt{xs}, \texttt{sm}, \texttt{md}, \texttt{lg}, \texttt{xl}, \texttt{xxl}.
+
+We need to surround all elements involved in the grid system with a \texttt{.row} class. To declare number of columns for each screen size, we use \texttt{col-<screensize>-\hfill \break <no.ofcolumns>} (except for xs screens you must not add \texttt{-xs}\footnote{This is Bootstrap's way of reminding us that they employ the "mobile first" principle}). For example, \texttt{.col-12.col-sm-12.col-md-6.col-lg-4.col-xl-3.col-xxl-3} means that the element would occupy the whole screen when the screen is an xs or small screen; half of medium screen, 1/3 of large screens, and 1/4 of xl or xxl screens. Now we would add this style to the abouts page Pug file. Making the reference book info section and the book image side by side when the screen is large enough. The number of columns occupied by the text increases as screen size increases so that the book image is always aligned to the right. (by making the total number of occupied columns adding up to 12)
+\vspace{6mm}
+
+\begin{lstlisting}[language=pug]
+//- templates/views/abouts.pug
+.row
+    .col-12.col-sm-12.col-md-6.col-lg-8.col-xl-9.col-xxl-9
+        ul
+            li.large-text Book name: The Book of Numbers
+            li Author: Tim Glynne-Jones
+            li Publisher: Arcturus Publishing Limited
+            li.large-text Project name: "Numbers are Fun!"
+            li.large-text.blue-text Topics chosen: 9, 11, 30, 365.25
+        a(href="#self-intro") Back to top
+    .col-12.col-sm-12.col-md-6.col-lg-4.col-xl-3.col-xxl-3
+        img#bookofnumbers(src="images/bookofnumbers.jpg")
+        p.blue-text The Book of Numbers
+\end{lstlisting}
+
+\begin{lstlisting}[language=pug]
+//- templates/styles/site/abouts.less
+#bookofnumbers{
+    width: 100%;
+}
+\end{lstlisting}
+
+There will be more applications of the grid system when \hyperref[sec:cards]{implementing cards in the next chapter.}
+\subsection{Flexbox}
+
+Sometimes you would like to position an unknown number of elements, or a number that is not divisible by 12, then using the grid system might not be a good idea. We can use flexbox in these scenario. It is \href{https://css-tricks.com/snippets/css/a-guide-to-flexbox/}{well documented}\footnote{Documentation: \url{https://css-tricks.com/snippets/css/a-guide-to-flexbox/}} with clear illustrations. And here is an \href{https://flexboxfroggy.com/}{interactive tutorial}\footnote{Tutorial: \url{https://flexboxfroggy.com/}}. In order to use all the styles listed in there, you first have to surround the elements involved with an element with the style \texttt{display: flex;}, bring all the elements within it to the "flex world".
+
+It could be hard to get right at first, I recommend using the browser developer mode to experiment more with flexbox, add the related stles to different layers of elements and see which ones works. 
+
+Learning the concept of flexbox is useful when building apps.
+
+\section{Margins and paddings}
+\label{sec:margin}
 
 \subsection{Background colour}
 
@@ -62,27 +159,6 @@ h1{
     background-color: #777; //#777 is equivalent to #777777
 }
 \end{lstlisting}
-
-\subsection{Text alignment}
-
-\texttt{text-align} sets the alignment of text. It accepts values \texttt{left} (default), \texttt{center}\footnote{Note the American spelling}, \texttt{right}, and \texttt{justify}\footnote{Sometimes \texttt{justify} might not work very well, if so just use \texttt{left} instead.}
-
-\begin{lstlisting}[language=pug]
-#self-intro{
-    text-align: right;
-}
-\end{lstlisting}
-
-\section{Positioning}
-
-\subsection{Width}
-
-\subsection{Height}
-
-\subsection{Flexbox}
-
-\section{Margins, paddings and borders}
-\label{sec:margin}
 
 \subsection{Margins}
 

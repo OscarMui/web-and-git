@@ -50,7 +50,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 \end{lstlisting}
 
 \subsection*{First add}
-So you can see it is prompting you to run \texttt{git add <file>}. Instead, I would prefer \texttt{git add .} As discussed in \hyperref[sec:dir]{the previous chapter}, \texttt{.} refers to the current directory. That means, we are adding all the changes in the folder to be ready for a commit.
+So you can see it is prompting you to run \texttt{git add <file>}. Instead, I would prefer \texttt{git add .} As discussed in \cref{sec:dir}, \texttt{.} refers to the current directory. That means, we are adding all the changes in the folder to be ready for a commit.
 
 \begin{lstlisting}[language=bash]
 $ git add .
@@ -85,7 +85,7 @@ git config --amend --reset-author
 
 We got a problem here, our username and email do not match with the ones on GitHub. We need to \#1) change the default name and email on our device, and \#2) change the name and email for this particular commit.
 
-Instead of the commands recommended automatically by Git, I recommend variants of those commands which are listed below, because these commands won't trigger the command line text editor to pop up. \textit{\hyperref[sec:vim]{(more in chapter 2)}}
+Instead of the commands recommended automatically by Git, I recommend variants of those commands which are listed below, because these commands won't trigger the command line text editor to pop up. (see \cref{sec:vim})
 
 Run the following two commands for \#1, replace with your own ones. Surround your name with double quotes if your name contains spaces.
 
@@ -241,7 +241,7 @@ Use \texttt{git init} in the folder with all your projects.
 
 The use of \texttt{git branch -M main} is to change the name of the default branch from "master" to "main". A decision that GitHub made in 2020.\footnote{More info: \url{https://www.jumpingrivers.com/blog/git-moving-master-to-main/}}
 
-Then follow your normal routine of adding and committing \hyperref[sec:gcmsg]{as above}. There is a convention naming the first commit "init" or "initial commit".
+Then follow your normal routine of adding and committing as above in \cref{sec:gcmsg}. There is a convention naming the first commit "init" or "initial commit".
 
 Then \texttt{git remote add origin} is to establish the linkage between the local code and the GitHub repository, so that Git knows where to push to when you run \texttt{git push}, except for the first time, you need to run \texttt{git push -u origin main}.
 
@@ -268,7 +268,7 @@ $ git push -u origin main
 
 \subsection{Downloading code from GitHub to local device}
 
-Use \texttt{git clone}, then a new folder with the repository name would be created with all the code inside. This is the method that we used in \hyperref[sec:install7]{chapter 1}.
+Use \texttt{git clone}, then a new folder with the repository name would be created with all the code inside. This is the method that we used in \cref{sec:install7}.
 
 \begin{lstlisting}[language=bash]
 # KidProf in ~/code

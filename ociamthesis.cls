@@ -108,9 +108,9 @@
 {\large \vspace*{40mm} {\logo \par} \vspace*{25mm}}
     {{\Large \@author} \par}
 {\large \vspace*{1ex}
-    {{\@college} \par}
+    {{\@college}, University of Oxford \par}
 \vspace*{1ex}
-    {University of Oxford \par}
+    {Learn to Code Officer, Oxford CompSoc \par}
 \vspace*{25mm}
     {{\submittedtext} \par}
 \vspace*{1ex}

@@ -7,11 +7,11 @@ Probably the most complicated installation procedure you have ever seen. However
 
 \section*{For those of you not using Git}
 
-You would still need to perform \hyperref[sec:install1]{step 1: install Git Bash} if you are using a Windows machine.\footnote{Because the Windows CMD uses slightly different command keywords.}
+You would still need to perform step \cref{sec:install1} if you are using a Windows machine.\footnote{Because the Windows CMD uses slightly different command keywords.}
 
 You can download the code as a zip file \href{https://github.com/KidProf/static-web-sandbox}{here}.\footnote{Link: \url{https://github.com/KidProf/static-web-sandbox}}\textit{(see figure)} You do not need a GitHub account to do so. 
 
-After that, proceed with \hyperref[sec:install5]{step 5: Creating a folder using command line}, and unzip your code inside the folder, then proceed with \hyperref[sec:install7]{step 7: Installing node.js} and onwards.
+After that, proceed with step \cref{sec:install5}, and unzip your code inside the folder, then proceed with step \cref{sec:install7} and onwards.
 
 \begin{figure}[h]
 \centering
@@ -97,6 +97,18 @@ Use \texttt{git clone}, followed by pasting the URL obtained from GitHub. You sh
 
 Download node.js by following \href{https://nodejs.org/en/}{this link}.\footnote{Link: \url{https://nodejs.org/en/}} It should be straightforward. You should download the LTS\footnote{stands for long term support} version.
 
+After installing, you can try running \texttt{node --version} in the command line.
+
+\begin{lstlisting}[language=bash]
+# If node is installed, it will show you the version number.
+$ node --version
+v16.14.0
+
+# If node is not installed, it will show you an error message
+$ node --version
+zsh: command not found: node
+\end{lstlisting}
+
 \section{Installing dependencies for the project}
 
 Open your command line, \texttt{cd} into the folder with the code in, run \texttt{npm install}. A new folder called \texttt{node\textunderscore modules} will be automatically created, with everything you need to use this project installed within that folder.
@@ -114,7 +126,7 @@ $ npm install
 
 \section{Opening the web page}
 
-Run \texttt{npm run build} to build the web page, more on this would be explained in \hyperref[sec:ch4]{chapter 4}.
+Run \texttt{npm run build} to build the web page, more on this would be explained in \cref{sec:projstructure}.
 
 Then, open the folder containing the project in file explorer/ finder. Go to the \texttt{docs} folder, open \texttt{index.html} using a web browser of your choice.
 
