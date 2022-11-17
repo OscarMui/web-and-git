@@ -1,6 +1,9 @@
 \chapter{Git}
+\label{sec:ch3}
+Git is important because it allows you to work and communicate with people using just a few simple commands. By following its rules and conventions, you can work with others efficiently, without having to send zip files back and forth through emails. It also allows version control, for you to keep track of changes you have made to your code, and revert to a previous version or take reference from your previous changes when necessary.
+\vspace{6mm}
 
-Git is important because it allows you to work and communicate with people using just a few simple commands. By following its rules and conventions, you can work with others efficiently, without having to send zip files back and forth through emails. 
+We will focus on getting Git set up and basic commands in this chapter. After reading this chapter, you will be able to use Git alone for version control, as if it is a save button of your work. A few more commands will be introduced in \cref{sec:git2} to allow you to work with others.
 
 \begin{center}
 \includegraphics[width=10cm]{images/ch0-version-control.jpeg}
@@ -68,7 +71,7 @@ Changes to be committed:
 	modified:   app/templates/views/index.pug
 \end{lstlisting}
 
-\subsection*{First commit}
+\subsection*{First commit (and set up your name and email)}
 
 Next step, we are now ready to commit. \texttt{git commit} seals and confirms your changes into one chunk, and adds a commit message. The \textbf{commit message} should be meaningful, summarising what you have achieved with these code changes.
 
@@ -122,7 +125,7 @@ nothing to commit, working tree clean
 
 \subsection*{First push}
 
-Time to run \texttt{git push}, our last step. Except it returns an error.
+Time to run \texttt{git push}, our last step. Except it might return an error.
 
 \begin{lstlisting}[language=]
 $ git push
@@ -132,7 +135,7 @@ To push the current branch and set the remote as upstream, use
     git push --set-upstream origin main
 \end{lstlisting}
 
-This one is quite an easy fix, just run the substitute command as instructed. You will need this whenever you are pushing a new branch to GitHub.
+This one is quite an easy fix, just run the substitute command as instructed. You will need this whenever you are pushing a new branch to GitHub. \texttt{git push} should be sufficient for subsequent pushes.
 
 \begin{lstlisting}[language=]
 $ git push --set-upstream origin main
@@ -174,6 +177,14 @@ $ git push
 \vspace{6mm}
 
 You should perform these three steps whenever you have made some progress on your code, as if it is a save button. Practice makes perfect!
+
+\subsection*{When do I have to set name and email like in the previous section?}
+
+Every time you are using a new computer.
+
+\subsection*{When do I have to add \texttt{--set-upstream} when pushing?}
+
+Every time you are pushing a new branch to GitHub. You don't need to remember to do so because Git will reminds you anyways as shown in the previous section.
 
 \section{Visualising}
 \label{sec:sublime}
@@ -224,6 +235,9 @@ In these cases, let's give up and use a cheesy way to fix it. Move all your code
 
 \section{Repositories}
 
+\textit{Advanced}
+\vspace{6mm}
+
 Again, repository is a fancier name for project. Now we will look closely at this concept, and explain how to establish the relationship between your local code and the GitHub code.
 
 \subsection{Creating a repository on GitHub}
@@ -267,8 +281,9 @@ $ git push -u origin main
 \end{figure}
 
 \subsection{Downloading code from GitHub to local device}
+\label{sec:gitclone}
 
-Use \texttt{git clone}, then a new folder with the repository name would be created with all the code inside. This is the method that we used in \cref{sec:install7}.
+Use \texttt{git clone} followed by the URL provided by GitHub, then a new folder with the repository name would be created with all the code inside. This is the method that we used in \cref{sec:install7}.
 
 \begin{lstlisting}[language=bash]
 # KidProf in ~/code
