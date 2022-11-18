@@ -53,7 +53,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 \end{lstlisting}
 
 \subsection*{First add}
-So you can see it is prompting you to run \texttt{git add <file>}. Instead, I would prefer \texttt{git add .} As discussed in \cref{sec:dir}, \texttt{.} refers to the current directory. That means, we are adding all the changes in the folder to be ready for a commit.
+So you can see it is prompting you to run \texttt{git add <file>}. Instead, I would prefer \texttt{git add .} As discussed in \cref{sec:dir}, \texttt{.} refers to the current directory. That means, we are including all the changes in the folder to be ready for a commit.
 
 \begin{lstlisting}[language=bash]
 $ git add .
@@ -169,7 +169,7 @@ $ git commit -m "your message here"
 $ git push
 \end{lstlisting}
 
-\texttt{git add} adds the changes you have made to be ready for the commit. 
+\texttt{git add} includes the changes you have made to be ready for the commit. 
 
 \texttt{git commit} seals and confirms your changes into one chunk, and adds a commit message. The \textbf{commit message} should be meaningful, summarising what you have achieved with these code changes.
 
@@ -222,7 +222,8 @@ The commit history is displayed.
 \includegraphics[width=13cm]{images/ch3-gitgraph2.png}
 \end{center}
 
-\section{Something went wrong?} 
+\section{Something went wrong?}
+\label{sec:gitpractice}
 
 Anytime if you are unsure about what is happening with Git, \textbf{\texttt{git status}} is your best friend! It will display information about current situation, it might also contains some hints on which command(s) you need to run to get out of nasty situations.
 \vspace{6mm}
@@ -232,6 +233,8 @@ If you added a files that you don't want to push, and you have not committed, yo
 However, if you made some irreversible/ hard to reverse mistakes, which everybody will at some point in time. For example, you have made a commit at the wrong branch but haven't pushed, or you failed to fix a merge conflict. 
 
 In these cases, let's give up and use a cheesy way to fix it. Move all your code to another location so that you remember what you have changed, clone the repository from GitHub again, then apply your changes to the new copy of the code, but with the mistakes fixed. It is completely fine, and sometimes the easiest way to do something.
+
+Some of you who have learnt Git before may realise that there are other ways of using Git, mine is a more traditional command line approach, if you want to know why you can refer to \cref{sec:githubdesktop}.
 
 \section{Repositories}
 
@@ -250,6 +253,7 @@ It is as simple as pressing a "New" button on the GitHub website, then fill in s
 You can add a \hyperref[sec:readme]{\texttt{README.md}} or \hyperref[sec:gitignore]{\texttt{.gitignore}}, the usage of such files will be explained in the \hyperref[sec:projstructure]{next chapter}. However, it would make the repository no longer empty and you will have trouble \hyperref[sec:gituploadgithub]{uploading local code to the new repository.}
 
 \subsection{Uploading existing local code to a new GitHub repository}
+\label{sec:gitinit} 
 
 Use \texttt{git init} in the folder with all your projects.
 
