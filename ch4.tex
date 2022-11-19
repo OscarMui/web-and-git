@@ -1,5 +1,7 @@
 \chapter{Git}
 \label{sec:ch3}
+% Old Ch. 3
+
 Git is important because it allows you to work and communicate with people using just a few simple commands. By following its rules and conventions, you can work with others efficiently, without having to send zip files back and forth through emails. It also allows version control, for you to keep track of changes you have made to your code, and revert to a previous version or take reference from your previous changes when necessary.
 \vspace{6mm}
 
@@ -75,7 +77,7 @@ Changes to be committed:
 
 Next step, we are now ready to commit. \texttt{git commit} seals and confirms your changes into one chunk, and adds a commit message. The \textbf{commit message} should be meaningful, summarising what you have achieved with these code changes.
 
-\begin{lstlisting}[language=]
+\begin{lstlisting}[language=bash]
 $ git commit -m "experimenting with git"
 [main e7bc529] experimenting with git
 Committer: KidProf <kidprof@KidProfs-MacBook-Air.local>
@@ -114,7 +116,7 @@ $ git config --amend --reset-author --no-edit
 
 All set, now try running \texttt{git status} again.
 
-\begin{lstlisting}[language=]
+\begin{lstlisting}[language=bash]
 $ git status
 On branch main
 Your branch is ahead of 'origin/main' by 1 commit.
@@ -127,7 +129,7 @@ nothing to commit, working tree clean
 
 Time to run \texttt{git push}, our last step. Except it might return an error.
 
-\begin{lstlisting}[language=]
+\begin{lstlisting}[language=bash]
 $ git push
 fatal: The current branch main has no upstream branch.
 To push the current branch and set the remote as upstream, use
@@ -137,7 +139,7 @@ To push the current branch and set the remote as upstream, use
 
 This one is quite an easy fix, just run the substitute command as instructed. You will need this whenever you are pushing a new branch to GitHub. \texttt{git push} should be sufficient for subsequent pushes.
 
-\begin{lstlisting}[language=]
+\begin{lstlisting}[language=bash]
 $ git push --set-upstream origin main
 Enumerating objects: 11, done.
 Counting objects: 100% (11/11), done.

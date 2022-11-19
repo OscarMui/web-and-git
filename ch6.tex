@@ -1,5 +1,6 @@
 \chapter{Project Structure}
 \label{sec:projstructure}
+% Old Ch. 4
 
 \textit{Covered in \href{https://www.youtube.com/watch?v=fbbjnhs4nyo&list=PLjGmdnqrOKuYXiu7lgG5HW71jPEUd1XCm&index=3}{video 2 of the series}}
 \vspace{6mm}
@@ -49,7 +50,7 @@ When we run \texttt{npm run build}, the styles got translated into CSS and put i
 Place all the images or other assets you need for the website under \texttt{\textbf{app}/images} folder. Do not put them inside \texttt{dist}! We will discuss the reasons for that in the next section. 
 
 \section{Website generation}
-
+\label{sec:webgen}
 We kept mentioning \texttt{npm run build} as if it is some sort of magic, now it's time to look a little bit closer.
 
 \subsection{\texttt{package.json}}
@@ -143,6 +144,13 @@ This folder is automatically generated when you run \texttt{run build}.\footnote
 
 Because the \texttt{node\textunderscore modules} folder and the \texttt{docs} folder can be automatically generated on your own local machine. There is no need to put these onto GitHub. The \texttt{.gitignore} file lets you state the files and folders that you do not want to push to GitHub. It includes the two folders I have mentioned, and some others that are out of our scope.
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=15cm]{images/chn6-full-translation.png}
+\caption{Overview of the translation process}
+\label{fig:createnewrepo}
+\end{figure}
+
 \section{Other files}
 
 \subsection{\texttt{README.md}}
@@ -155,13 +163,3 @@ This file serves as a documentation. It will be displayed on GitHub. You should 
 \textit{Of less importance}
 \vspace{6mm}
 This file stores the JavaScript settings and version we are using, so as to check for syntax errors when copying JavaScript files from \texttt{app} to \texttt{docs}. \textit{You do not need to edit this file at all.}
-
-\section{VS Code Tips}
-
-You can run \texttt{code .} in your terminal to open VS Code with the directory opened, it is very convenient. If you can't get it to work, try setting up the environment variables as instructed \href{https://code.visualstudio.com/docs/setup/mac}{here}\footnote{Link: \url{https://code.visualstudio.com/docs/setup/mac}}.
-\vspace{6mm}
-
-Another good tip is that you can highlight a few lines of text, and hit \texttt{tab}, and all those lines will be indented inwards; while hitting \texttt{shift+tab} will make them indent outwards.
-\vspace{6mm}
-
-As I have said before, it is not a must to install any plugins.
