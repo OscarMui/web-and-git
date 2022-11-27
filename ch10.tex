@@ -9,6 +9,29 @@
 
 \section{Web Hosting}
 
+\section{Common Errors}
+
+\subsection{Pug: Invalid indentation, you can use tabs or spaces but not both}
+
+This error might appear when you run \texttt{npm run build}.
+You can either use tab or 4 spaces to represent indentation in Pug, but it has to be consistent throughout a file. You encounter this error because you sometimes use spaces, sometimes use tabs for indentation in the same file. Solve this error by replacing all tabs with 4 spaces, or vice versa. It is difficult because you can't distinguish them in the text editor. I recommend using the find and replace tool. To insert a tab in the search/ replace box, copy a tab from elsewhere and paste it.
+
+\subsection{npm: Local modules not found}
+
+This error might appear when you run \texttt{npm run build}. It means that the node modules are not installed yet. Run \texttt{npm install} to fix. 
+
+\subsection{Styling: My styles are not appearing}
+
+Check the browser developer tools.
+
+If the styles you have written appears there but crossed out, it means your styles do not have high enough priority, check out \cref{sec:stylingpriority} to see how you can increase the priority of the styles.
+
+If you cannot see the styles you have written, double check the less file to make sure you are referencing the correct element. Also double check if the less file is included in \texttt{app/styles/site.less}
+
+\subsection{My images/ other edits are gone after re-downloading the code from GitHub}
+
+It might because you put your images/ made edits under the \texttt{docs} folder. Remember you must make all edits under the \texttt{app} folder. Things under the \texttt{docs} folder will not be pushed by GitHub and will be overwritten on \texttt{npm run build}.
+
 \section{Optional QOL tools for MacOS}
 \label{sec:iterm}
 \textit{Of less importance, covered in \href{https://www.youtube.com/watch?v=ZIBEVGrtiVA&list=PLjGmdnqrOKuYXiu7lgG5HW71jPEUd1XCm&index=7}{video 6a of the series}}
@@ -60,6 +83,8 @@ On the other hand, you can only code mobile apps for one specific platform\footn
 
 Learning how to make a website is actually just a facade. The most important thing that I think you will take away with is the knowledge on command line and Git.
 
+I think building websites is half of the course while another half is about command line and Git.
+
 Knowing how to use the command line is important because you can work more efficiently if you are proficient at command line tools. And you will come across some situations where only command line is available (e.g. when accessing a remote server). 
 
 Git is important because it allows you to work and communicate with people using just a few simple commands. By following its rules and conventions, you can work with others efficiently, without having to send zip files back and forth through emails. 
@@ -83,9 +108,6 @@ Mobile devices are common nowadays, so our website has to cater for screens with
 A website is responsive if it can rearrange its elements for easy readability based on the screen size and orientation. The use of Bootstrap makes our website responsive.
 \vspace{6mm}
 
-I think the following summarises what we talked about in this section. I think building websites is half of the course while another half is about command line and Git.
-
-\includegraphics[width=15cm]{images/ch0-summary-of-course.png}
 
 \section{Scope and limitations}
 \label{sec:limitations}

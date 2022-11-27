@@ -21,7 +21,7 @@
 \usepackage{multirow} % ability to merge rows using \mergerow
 \usepackage{makecell} % ability to have line breaks inside tables
 \usepackage{imakeidx} % add an index for the document
-\usepackage{float} % to fix the position of tables, so that it won't go to another place
+\usepackage{float} % to fix the position of tables and images, so that it won't go to another place
 \usepackage{cleveref} % Create references to different chapters
 \makeindex % add an index for the document
 % configure hyperref, display the contents page as its usual black color
@@ -68,12 +68,12 @@
 \lstdefinelanguage{pug}{
   keywords={typeof, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break, p, h1, h2, h3, h4, h5, h6, small, span, img, ul, ol, li, table, tr, td, br, extends, div, block},
   keywordstyle=\bfseries,
-  ndkeywords={class, export, boolean, throw, implements, import, src, href, target, width, height},
+  ndkeywords={src, href, target, width, height},
   ndkeywordstyle=\bfseries,
   identifierstyle=\color{black},
   sensitive=false,
   comment=[l]{//-},
-  morecomment=[s]{/*}{*/},
+  morecomment=[l]{//},
   commentstyle=\itshape,
 %   stringstyle=\color{red}\ttfamily,
   morestring=[b]',
@@ -81,7 +81,7 @@
 }
 
 \lstdefinelanguage{bash}{
-  keywords={npm, git, add, commit, push, clone, init, checkout, merge, cd, ls, rm, cp, mv, pwd, mkdir, touch},
+  keywords={npm, git, add, commit, push, pull, fetch, clone, init, checkout, merge, cd, ls, rm, cp, mv, pwd, mkdir, touch},
   keywordstyle=\bfseries,
   ndkeywords={},
   ndkeywordstyle=\bfseries,

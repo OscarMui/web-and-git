@@ -2,10 +2,10 @@
 \label{sec:ch3}
 % Old Ch. 3
 
-Git is important because it allows you to work and communicate with people using just a few simple commands. By following its rules and conventions, you can work with others efficiently, without having to send zip files back and forth through emails. It also allows version control, for you to keep track of changes you have made to your code, and revert to a previous version or take reference from your previous changes when necessary.
+Git is important because it allows you to work and communicate with people by using just a few simple commands. By following its rules and conventions, you can work with others efficiently, without having to send zip files back and forth through emails. It also allows version control, for you to keep track of changes you have made to your code, and revert to a previous version or take reference from your previous changes when necessary.
 \vspace{6mm}
 
-We will focus on getting Git set up and basic commands in this chapter. After reading this chapter, you will be able to use Git alone for version control, as if it is a save button of your work. A few more commands will be introduced in \cref{sec:git2} to allow you to work with others.
+We will focus on getting Git set up and introducing you with the basic commands in this chapter. After reading this chapter, you will be able to use Git alone for version control, as if it is a save button of your work. A few more commands will be introduced in \cref{sec:git2} to allow you to work with others.
 
 \begin{center}
 \includegraphics[width=10cm]{images/ch0-version-control.jpeg}
@@ -13,7 +13,7 @@ We will focus on getting Git set up and basic commands in this chapter. After re
 
 \section{Git VS GitHub}
 
-Before we start, it is a good idea to distinguish between Git and GitHub. Git runs on your local machine, keeping track of the changes you have made locally. While GitHub is a cloud service provider\footnote{There are also other similar cloud service provider but GitHub is the most popular one}, keeping track of changes made to different people. That version of the project on GitHub should be the one that all local machines follow.
+Before we start, it is a good idea to distinguish between Git and GitHub. Git runs on your local machine, keeping track of the changes you have made locally. While GitHub is a cloud service provider\footnote{There are also other similar cloud service provider but GitHub is the most popular one}, keeping track of changes made by different people. That version of the project on GitHub should be the one that all local machines follow.
 
 \begin{center}
 \includegraphics[width=10cm]{images/ch3-gitgithub.png}
@@ -25,7 +25,7 @@ Before we start, it is a good idea to distinguish between Git and GitHub. Git ru
 \textit{Covered in \href{https://www.youtube.com/watch?v=wQmFz-Ggxuo&list=PLjGmdnqrOKuYXiu7lgG5HW71jPEUd1XCm&index=4}{video 3 of the series}}
 \vspace{6mm}
 
-Let's just change out \texttt{app/templates/views/index.pug} slightly so that we can make our first push to GitHub. Or if you are working on other projects, you can pick a random file and made some edits.
+Let's just change \texttt{app/templates/views/index.pug} slightly so that we can make our first push to GitHub. Or if you are working on other projects, or you have made edits to \texttt{index.pug} or \texttt{abouts.pug} as instructed by previous chapters, you can just pick a random file or create a new one and make some edits.
 
 \begin{lstlisting}[language=pug]
 //- app/templates/views/index.pug
@@ -36,10 +36,10 @@ block content
 		h1 Welcome to Static Web!
 		br
 		p A very cool website.
-		p This web is made for tutorial purposes.
+		p This web is made for tutorial purposes. //- ^new line
 \end{lstlisting}
 
-One very useful command - \texttt{git status} displays information about current situation, it might also contains some hints on which command(s) you need to run to proceed.
+One very useful command - \texttt{git status} displays information about current situation, it might also contain some hints on which command(s) you should run to proceed.
 
 \begin{lstlisting}[language=bash]
 $ git status
@@ -55,13 +55,13 @@ no changes added to commit (use "git add" and/or "git commit -a")
 \end{lstlisting}
 
 \subsection*{First add}
-So you can see it is prompting you to run \texttt{git add <file>}. Instead, I would prefer \texttt{git add .} As discussed in \cref{sec:dir}, \texttt{.} refers to the current directory. That means, we are including all the changes in the folder to be ready for a commit.
+So you can see it is prompting us to run \texttt{git add <file>}. Instead, I would prefer \texttt{git add .} As discussed in \cref{sec:dir}, \texttt{.} refers to the current directory. That means, we are including all the changes in the folder to be ready for a commit.
 
 \begin{lstlisting}[language=bash]
 $ git add .
 \end{lstlisting}
 
-Then, run \texttt{git status} again to asset the situation. The modified file should now be highlighted in green. (sadly you cannot see the green highlighting in LaTeX)
+Then, run \texttt{git status} again to asset the situation. The modified file should now be highlighted in green. (sadly you cannot see the green highlighting in \LaTeX)
 
 \begin{lstlisting}[language=bash]
 $ git status
@@ -75,7 +75,7 @@ Changes to be committed:
 
 \subsection*{First commit (and set up your name and email)}
 
-Next step, we are now ready to commit. \texttt{git commit} seals and confirms your changes into one chunk, and adds a commit message. The \textbf{commit message} should be meaningful, summarising what you have achieved with these code changes.
+Next step, we are now ready for commit. \texttt{git commit} seals and confirms our changes into one chunk, and adds a commit message. The \textbf{commit message} should be meaningful, summarising what we have achieved with these code changes.
 
 \begin{lstlisting}[language=bash]
 $ git commit -m "experimenting with git"
@@ -92,14 +92,14 @@ We got a problem here, our username and email do not match with the ones on GitH
 
 Instead of the commands recommended automatically by Git, I recommend variants of those commands which are listed below, because these commands won't trigger the command line text editor to pop up. (see \cref{sec:vim})
 
-Run the following two commands for \#1, replace with your own ones. Surround your name with double quotes if your name contains spaces.
+Run the following two commands for \#1, replace the name and email with your own ones. Surround your name with double quotes if your name contains spaces.
 
 \begin{lstlisting}[language=bash]
 $ git config --global user.name KidProf
 $ git config --global user.email kidprof@gmail.com
 \end{lstlisting}
 
-To verify, rerun those two commands but without the name and email, it should display your name and email as output.
+To verify, rerun those two commands but without the name and email, they should display your name and email as output.
 
 \begin{lstlisting}[language=bash]
 $ git config --global user.name
@@ -114,7 +114,7 @@ This command is for \#2.
 $ git config --amend --reset-author --no-edit
 \end{lstlisting}
 
-All set, now try running \texttt{git status} again.
+All set, now try running \texttt{git status} again. The warning is gone and Git is now prompting you to run the next command. 
 
 \begin{lstlisting}[language=bash]
 $ git status
@@ -128,6 +128,8 @@ nothing to commit, working tree clean
 \subsection*{First push}
 
 Time to run \texttt{git push}, our last step. Except it might return an error.
+
+\texttt{git push} uploads the commit from your local machine to GitHub. \textbf{Push} is another fancier word for upload.
 
 \begin{lstlisting}[language=bash]
 $ git push
@@ -175,10 +177,12 @@ $ git push
 
 \texttt{git commit} seals and confirms your changes into one chunk, and adds a commit message. The \textbf{commit message} should be meaningful, summarising what you have achieved with these code changes.
 
-\texttt{git push} uploads the commit from your local machine to GitHub. \textbf{Push} is another fancier word for upload
+\texttt{git push} uploads the commit from your local machine to GitHub. \textbf{Push} is another fancier word for upload.
 \vspace{6mm}
 
-You should perform these three steps whenever you have made some progress on your code, as if it is a save button. Practice makes perfect!
+You should perform these three steps whenever you have made some progress on your code, as if it is a save button.
+
+But there is an exception, you are not advised to push the code when your code failed to compile, because anybody else downloading the code would expect the code to run properly, at least for the parts of the code that are already finished in previous commits. But who cares when you are just working alone. :)
 
 \subsection*{When do I have to set name and email like in the previous section?}
 
@@ -192,7 +196,7 @@ Every time you are pushing a new branch to GitHub. You don't need to remember to
 \label{sec:sublime}
 Git is a command line tool and is best used through the command line. Again, you will come across some situations where only command line is available (e.g. when accessing a remote server). 
 
-However, it is acceptable if you just want to visualise the git commit history. Just don't run any commands using them. The following are two software recommended by me to do so. Sublime Merge looks nicer while Git Graph is visible inside VS Code. 
+However, it is acceptable if you just want to visualise the git commit history. Just don't run any commands using them. The following are two software recommended by me to do so. Sublime Merge looks nicer while Git Graph is embedded inside VS Code. 
 
 \subsection*{Sublime Merge}
 
@@ -200,44 +204,55 @@ Download Sublime Merge by following \href{https://www.sublimemerge.com/}{this li
 
 After installing, open the repository folder. The commit history is displayed.
 
-\begin{center}
+\begin{figure}[h]
+\centering
 \includegraphics[width=15cm]{images/ch3-sublimemerge.png}
-\end{center}
+\caption{Sublime Merge showing our commit history throughout the chapter}
+\end{figure}
 
 \subsection*{Git Graph}
 
 Git Graph is a VS Code extension, download it inside VS Code.
 
-\begin{center}
-\includegraphics[width=13cm]{images/ch3-gitgraph0.png}
-\end{center}
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{images/ch3-gitgraph0.png}
+\caption{Installation of Git Graph: Select extension on the menu on the left hand side, then search for Git Graph, then click install}
+\end{figure}
 
 Press \texttt{cmd+shift+P} or \texttt{ctrl+shift+P} to open the VS Code command bar, type \texttt{Git Graph: View Git Graph}
 
-\begin{center}
-\includegraphics[width=13cm]{images/ch3-gitgraph1.png}
-\end{center}
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{images/ch3-gitgraph1.png}
+\caption{What is shown when \texttt{cmd+shift+P} or \texttt{ctrl+shift+P} is pressed}
+\end{figure}
 
 The commit history is displayed.
 
-\begin{center}
-\includegraphics[width=13cm]{images/ch3-gitgraph2.png}
-\end{center}
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{images/ch3-gitgraph2.png}
+\caption{Git Graph showing our commit history throughout the chapter}
+\end{figure}
 
 \section{Something went wrong?}
 \label{sec:gitpractice}
 
-Anytime if you are unsure about what is happening with Git, \textbf{\texttt{git status}} is your best friend! It will display information about current situation, it might also contains some hints on which command(s) you need to run to get out of nasty situations.
+Anytime if you are unsure about what is happening with Git, \textbf{\texttt{git status}} is your best friend! It will display information about current situation, it might also contain some hints on which command(s) you need to run to get out of nasty situations.
 \vspace{6mm}
 
-If you added a files that you don't want to push, and you have not committed, you can try \texttt{git restore <file>} to revert the changes for a particular file, or \texttt{git restore .} to revert all changes.
+If you added files that you don't want to push, and you have not committed, you can try \texttt{git restore <file>} to revert the changes for a particular file, or \texttt{git restore .} to revert all changes.
 
-However, if you made some irreversible/ hard to reverse mistakes, which everybody will at some point in time. For example, you have made a commit at the wrong branch but haven't pushed, or you failed to fix a merge conflict. 
+However, if you made some irreversible/ hard to reverse mistakes, which everybody will at some point in time. For example, you have made a commit at the wrong branch but haven't pushed, or you failed to fix a merge conflict (\cref{sec:mergeconflict}). 
 
-In these cases, let's give up and use a cheesy way to fix it. Move all your code to another location so that you remember what you have changed, clone the repository from GitHub again, then apply your changes to the new copy of the code, but with the mistakes fixed. It is completely fine, and sometimes the easiest way to do something.
+In these cases, let's give up and use a cheesy way to fix it. Move all your code to another location so that you know what you have changed, clone the repository from GitHub again, then apply your changes to the new copy of the code, but with the mistakes fixed. It is completely fine, and sometimes the easiest way to do something.
+\vspace{6mm}
 
 Some of you who have learnt Git before may realise that there are other ways of using Git, mine is a more traditional command line approach, if you want to know why you can refer to \cref{sec:githubdesktop}.
+\vspace{6mm}
 
+If you will be working with others on the website you are creating using my template, it is highly recommended to read \cref{sec:git2} right after this. Else, you may carry on with the next chapter.
 \section{Repositories}
 
 \textit{Advanced}
@@ -248,14 +263,17 @@ Again, repository is a fancier name for project. Now we will look closely at thi
 \subsection{Creating a repository on GitHub}
 \label{sec:gituploadgithub}
 
-\textit{\textbf{WARNING: } You can only do so when the repository is empty. If the GitHub repository is not empty, you will need to create a new one.}
-
 It is as simple as pressing a "New" button on the GitHub website, then fill in some simple details, such as your repository name and whether you would like your repository to be publicly visible or private, the decision is yours.
 
-You can add a \hyperref[sec:readme]{\texttt{README.md}} or \hyperref[sec:gitignore]{\texttt{.gitignore}}, the usage of such files will be explained in the \hyperref[sec:projstructure]{next chapter}. However, it would make the repository no longer empty and you will have trouble \hyperref[sec:gituploadgithub]{uploading local code to the new repository.}
+Then, you can either follow \cref{sec:gitinit} or \cref{sec:gitclone} to add your code in. 
+
+You can add a \hyperref[sec:readme]{\texttt{README.md}} or \hyperref[sec:gitignore]{\texttt{.gitignore}}, the usage of such files will be explained in \cref{sec:readme} and \cref{sec:gitignore} respectively. However, it would make the repository no longer empty and you will have trouble following \cref{sec:gitinit}.
 
 \subsection{Uploading existing local code to a new GitHub repository}
 \label{sec:gitinit} 
+
+\textit{\textbf{WARNING: } You can only do so when the GitHub repository is empty. If the GitHub repository is not empty, you will need to create a new one.}
+\vspace{6mm}
 
 Use \texttt{git init} in the folder with all your projects.
 
@@ -283,7 +301,7 @@ $ git push -u origin main
 \begin{figure}[h]
 \centering
 \includegraphics[width=15cm]{images/ch3-newrepocode.png}
-\caption{The documentation on GitHub serves you well}
+\caption{The documentation on GitHub serves you well, we are following the upper part of the tutorial, remember to use SSH instead of HTTPS}
 \end{figure}
 
 \subsection{Downloading code from GitHub to local device}
@@ -297,7 +315,57 @@ $ git clone git@github.com:KidProfMC/git-practice.git
 $ cd git-practice
 \end{lstlisting}
 
+Then you can make updates on your code and push again.
+
+If your repository is empty, you can move your code in, then perform the normal steps, we just have to name our commit "init" like in the previous section.
+
+\begin{lstlisting}[language=bash]
+$ git add .
+$ git commit -m "init"
+$ git push
+
+# if git push returns an error, you can do:
+$ git push --set-upstream origin main
+\end{lstlisting}
+
 \subsection{\texttt{.git} folder}
 
-The \texttt{.git} folder contains everything that git needs to know to function normally, the commit history, the GitHub repository that it is linked to, etc.. If you remove the \texttt{.git} folder from your local device through the file explorer or finder (you need to enable the setting "show hidden files and folders"), or by the command \texttt{rm -rf .git}, all git information would be deleted.
+The \texttt{.git} folder contains everything that git needs to know to function normally, the commit history, the GitHub repository that it is linked to, etc.. If you remove the \texttt{.git} folder from your local device through the file explorer or finder (you need to enable the setting "show hidden files and folders"), or by the command \texttt{rm -rf .git}, all git information would be deleted. It might be useful if you are too confused and you want to reset everything related to Git.
 
+\begin{table}[H]
+    \centering
+    \caption{Table of common Git commands in this chapter}
+    \vspace{6mm}
+    \begin{tabular}{|m{7em}|m{23em}|}
+        \hline
+        \textbf{Command} & 
+        Description 
+        \\ \hline \hline
+        
+        \texttt{git status} &
+        Displays information about current situation, it might also contain some hints on which command(s) you should run to proceed. (\cref{sec:gcmsg})
+        \\ \hline
+        
+        \texttt{git add .} &
+        First step to push your code to GitHub - includes all the changes in the folder to be ready for a commit (\cref{sec:gcmsg})
+        \\ \hline
+        
+        \texttt{git commit -m "message"} &
+        Second step to push your code to GitHub - seals and confirms your changes into one chunk, and adds a commit message (\cref{sec:gcmsg})
+        \\ \hline
+        
+        \texttt{git push} &
+        Third step to push your code to GitHub - uploads the commit from your local machine to GitHub (\cref{sec:gcmsg})
+        \\ \hline
+        
+        \texttt{git init} &
+        Initialises a new Git repository in the current folder on your local machine (\cref{sec:gitinit})
+        \\ \hline
+        
+        \texttt{git clone $<$url$>$} &
+        Creates a new folder with the repository name would be created with all the code inside (\cref{sec:gitclone})
+        \\ \hline
+        
+        
+    \end{tabular}
+\end{table}

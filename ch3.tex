@@ -2,9 +2,9 @@
 \label{sec:cmd}
 % Old Ch. 2
 
-Command line is important because you can work more efficiently if you are proficient at command line tools. And you will come across some situations where only command line is available (e.g. when accessing a remote server).
+Command line is important because you can work more efficiently than using graphical interfaces if you are proficient at command line tools. And you will come across some situations where only command line is available (e.g. when accessing a remote server).
 
-I would use the term \textbf{command line} to refer to Git Bash if you are on a Windows machine, and the Terminal if you are on a MacOS or Linux machine. 
+I would use the term \textbf{command line} to refer to Git Bash if you are on Windows, or the Terminal if you are on MacOS, or the Shell if you are on Linux. 
 
 \section{Basic commands}
 
@@ -127,9 +127,11 @@ This makes it impossible to use \texttt{ctrl+C} as the copy shortcut, this also 
 \vspace{6mm}
 
 \section{More commands}
-
+\label{sec:rmcpmv}
 \textit{Advanced,}
 \textit{covered in \href{https://www.youtube.com/watch?v=U0bDr7b2cOM&list=PLjGmdnqrOKuYXiu7lgG5HW71jPEUd1XCm&index=8}{video 6 of the series}}\footnote{Thank you TL;DR for the simplified documentation in this section.}
+
+\textit{\textbf{WARNING:} It is not possible to recover removed files if you delete them through the command line, so just be slightly cautious on what you are typing.}
 \vspace{6mm}
 
 \subsection{\texttt{rm}}
@@ -159,7 +161,7 @@ Copy a file to another location:
 \texttt{cp path/to/source\textunderscore file.ext path/to/target\textunderscore file.ext}
 \vspace{6mm}
 
-Copy a directory to another location: (again \texttt{-r} is needed)
+Copy a directory to another location: (again \texttt{-r} is needed\footnote{Don't ask me why \texttt{-f} is needed, but it doesn't harm if you include it anyways.})
 
 \texttt{cp \textbf{-r} path/to/source\textunderscore directory path/to/target\textunderscore directory}
 
@@ -195,4 +197,67 @@ In order to save your work you want to type :w and press return. And in order to
 
 If you do not wish to save the file, you can use \texttt{:q!}
 
-
+\begin{table}[H]
+    \centering
+    \caption{Table of common command line commands}
+    \vspace{6mm}
+    \begin{tabular}{|m{13em}|m{22em}|}
+        \hline
+        \textbf{Command} & 
+        Description 
+        \\ \hline \hline
+        
+        \texttt{ls} &
+        Lists out the files and folders you have in your current directory
+        \\ \hline
+        
+        \texttt{cd $<$dir$>$} &
+        Changes to the specified directory
+        \\ \hline
+        
+        \texttt{cd ..} &
+        Changes to the previous directory
+        \\ \hline
+        
+        \texttt{cd $\sim$} &
+        Changes to the root directory
+        \\ \hline
+        
+        \texttt{pwd} &
+        Shows the current directory you are in in full
+        \\ \hline
+        
+        \texttt{touch $<$filename$>$} &
+        Creates a new file
+        \\ \hline
+        
+        \texttt{mkdir $<$dir$>$} &
+        Creates a new folder
+        \\ \hline
+        
+        \texttt{$<$software$>$ --version} &
+        Checks the version of a certain software
+        \\ \hline
+        
+        \texttt{rm $<$filename$>$} &
+        Removes a file with name \texttt{$<$filename$>$}
+        \\ \hline
+        
+        \texttt{rm -rf $<$dir$>$} &
+        Removes a folder with \texttt{$<$dir$>$}
+        \\ \hline
+        
+        \texttt{cp $<$src-file$>$ $<$destination-file$>$} &
+        Copies a file from \texttt{$<$src-file$>$} to \texttt{$<$destination-file$>$}
+        \\ \hline
+        
+        \texttt{cp -r $<$src-dir$>$ $<$destination-dir$>$} &
+        Copies a folder from \texttt{$<$src-dir$>$} to \texttt{$<$destination-dir$>$}
+        \\ \hline
+        
+        \texttt{mv $<$src$>$ $<$destination$>$} &
+        Moves a file/folder from \texttt{$<$src$>$} to \texttt{$<$destination$>$}
+        \\ \hline
+        
+    \end{tabular}
+\end{table}

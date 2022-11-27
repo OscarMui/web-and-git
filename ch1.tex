@@ -201,7 +201,13 @@ This marks the end of the installation marathon. I hope you have learned some ba
 
 Long story short, there are two folders you need to concern about, the \texttt{app} folder and the \texttt{docs} folder. 
 
-The \texttt{app} folder is the one that we should work on, it includes the Pug files and much more. The Pug files that you should work up to chapter 5 are all under \texttt{app/templates/views}. Write your code inside the \texttt{.container} class, indented inwards. 
+\begin{figure}[h]
+\centering
+\includegraphics[width=13cm]{images/chn1-half-translation.png}
+\caption{Overview of the translation process (quick start version)}
+\end{figure}
+
+The \texttt{app} folder is the one that we should work on, it includes the Pug files and much more. Pug files shapes the content of the web page. The Pug files that you should work up to chapter 5 are all under \texttt{app/templates/views}. Write your code inside the \texttt{.container} class, indented inwards. 
 \vspace{6mm}
 
 \begin{lstlisting}[language=pug]
@@ -216,14 +222,15 @@ block content
 You can open the HTML files in the \texttt{docs} folder using a browser of your choice. All files in the \texttt{docs} folder are generated based on our code in the \texttt{app} folder when we run \texttt{npm run build}. \textbf{IMPORTANT: Do NOT edit anything in the \texttt{docs} folder. Changes will be overwritten when you run \texttt{npm run build} again.}
 
 The things you write in \texttt{app/templates/views} will be translated into an HTML file matching the name of the Pug file in the \texttt{docs} folder after you have run \texttt{npm run build}. For example, if you create a new file with the above template, called \texttt{new.pug} (You are advised to follow the above template when creating new Pug files under \texttt{app/templates/views}), then the content would appear when you open \texttt{docs/new.html} with your browser. 
+\vspace{6mm}
 
-There are a lot of things going on in this project, but this quick start guide should be enough for you to get started. More information about project strucutre would be in \cref{sec:projstructure}.
+At the same time, styling files are under \texttt{app/styles/site}, they are currently all empty and it is you job to fill them with amazing code in the later chapters :). They will be translated to \texttt{docs/site.css}.
+\vspace{6mm}
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=15cm]{images/chn1-half-translation.png}
-\caption{Overview of the translation process (quick start version)}
-\end{figure}
+Finally, when you run \texttt{npm run build}, the images under \texttt{app/images} folder would be copied to \texttt{docs/images}. That's why we can reference the images using \texttt{images/$<$filename$>$} in the Pug files, as we are referencing them in the perspective of the HTML files that are in the \texttt{docs} folder after the translation. 
+\vspace{6mm}
+
+There are a lot of things going on in this project, but this quick start guide should be enough for you to get started. More information about project structure would be in \cref{sec:projstructure}.
 
 \section{VS Code Tips}
 

@@ -1,165 +1,420 @@
-\chapter{Project Structure}
-\label{sec:projstructure}
-% Old Ch. 4
+\chapter{Styling}
+\label{sec:styling}
+% Old Ch. 6
 
-\textit{Covered in \href{https://www.youtube.com/watch?v=fbbjnhs4nyo&list=PLjGmdnqrOKuYXiu7lgG5HW71jPEUd1XCm&index=3}{video 2 of the series}}
+We will demonstrate some styling techniques, by using an example we set up earlier on an abouts page (\cref{fig:aboutspage}). We have set up the contents of the abouts page in \cref{sec:pug1}, and now let's make it look prettier!
 \vspace{6mm}
 
-We will tour around the project and explain a little bit on how the website works. It is just a brief overview, you do not need to remember and understand every detail, the most important thing to learn is how to use them, which will be taught in later chapters.
+Less is used in place of CSS for reasons that we may explore later down the chapter. But for now, we can just treat it as CSS. Because Less is a superset of CSS (i.e. all valid CSS codes are valid less codes). All knowledge you have learnt about CSS before can be transferable to Less, but we will start from scratch anyways for those of you who have not learnt CSS before.
 
-\section{Overview}
+% Less is used in place of CSS, to provide syntactic sugars\footnote{"Syntactic sugar" is a term for syntax changes in computer programming which make it easier for humans to code.} for us to make our lives easier, including nested styles and variables. 
 
-The \texttt{app} folder contains everything you need to generate the website. The Pug files, the styles written in Less, JavaScript files, images, etc.. Then by running \texttt{npm run build}, commanding the \texttt{gulpfile.js} and \texttt{node\textunderscore modules} to work together, it translates the Pug files into HTML files, less styles into CSS files, and copies other files to the \texttt{docs} folder. The \texttt{docs} folder is the final output of the website, we can open the HTML files directly using a browser.
+\section{Logistics}
 
-\section{Pug files}
+\subsection*{Where to write my code?}
 
-Pug files act as template files, we will just call them \textbf{pug files} in this piece of notes. They are translated into HTML files and provide the basic structure of the web page. All Pug files should be put inside \texttt{app/templates}.
+As discussed in \cref{sec:lesslayout}, write your less code inside \texttt{app/styles/site}. 
+\vspace{6mm}
 
-\subsection*{Views}
+Different from \cref{sec:classesids} where we write all our styling code in \texttt{layout.less} for simplicity. We should reorganise it so that \texttt{layout.less} should contain styles that is used in all/ multiple pages; \texttt{variables.less} should contain all variables; and other files should contain styles that is only used in the page with the same name as the style file.
 
-The \texttt{app/templates/views} folder contains the content body of each page. Each Pug file in this folder would be translated to an HTML file with the same name in \texttt{docs}. As you can see, \texttt{abouts.pug} is translated into \texttt{abouts.html} while \texttt{index.pug} is translated into \texttt{index.html}. They all \texttt{extends ../layouts/default}, meaning that they follow the layout in \texttt{app/templates/layouts/default.pug}, which we will look at in a second. (Reminder: \texttt{..} means previous directory)
+When you create a new less file, remember to include it inside \texttt{site.less}
 
-\texttt{index.pug} (later translated to \texttt{index.html}) is the homepage of the web site. When you host the web page onto a web server, the index page will also be shown when you just type in the URL without specifying which HTML file you want to read. You are advised to have an \texttt{index.pug} file in every project.
+\begin{lstlisting}
+// app/styles/site.less
+@import "site/variables.less";
 
-\subsection*{Layouts}
+// Add your own site style includes here
+@import "site/layout.less";
+@import "site/index.less";
+@import "site/abouts.less"; //we are styling the abouts page now
+\end{lstlisting}
 
-The \texttt{app/templates/layouts} folder contains \texttt{default.pug}. It is a template for \textbf{all} pages. It includes common elements like the page title, the styles import, the navbar and the footer. 
+\subsection*{Syntax}
 
-Then under \texttt{block content} in line 55, each page in the \texttt{views} folder inserts their own content under this block. Knowing the exact syntax is not required.
+We actually have done some styling already in \cref{sec:classesids}. Refer to that section if you want a recap.
+Let's now look at the same example again and we talk more about it.
 
-\subsection*{Partials}
-
-The navbar and footer are separated from the \texttt{default.pug} to make it cleaner. They are put in the \texttt{app/templates/partials} folder, and got included in \texttt{default.pug} in lines 38 and 61 respectively.
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=13cm]{images/ch4-puglayouts.png}
-\caption{Overview on how Pug files are translated}
-\end{figure}
-
-\section{Styling files}
-
-We will be using less files for styling in place for CSS, which are placed under \texttt{app/styles}. We will call them \textbf{Styling files} in this piece of notes. The \texttt{site.less} file includes all files under the \texttt{app/styles/site} folder, \textbf{remember to add the file to \texttt{site.less} whenever you are creating a new less file}. 
-
-The files under the \texttt{site} folder should be where you write the styles. By convention, \texttt{layout.less} should contain styles that is used in all/ multiple pages; \texttt{variables.less} should contain all variables; and other files should contain styles that is only used in the page with the same name as the style file. This is just a convention but not a rule, there is nothing to enforce it until \cref{sec:confinestyles}.
-
-When we run \texttt{npm run build}, the styles got translated into CSS and put into a single file \texttt{docs/styles/site.css}. The stylesheet is imported into all HTML files in line 18 of \texttt{layout.pug}.
-
-\section{Images}
-
-Place all the images or other assets you need for the website under \texttt{\textbf{app}/images} folder. Do not put them inside \texttt{dist}! We will discuss the reasons for that in the next section. 
-
-\section{Website generation}
-\label{sec:webgen}
-We kept mentioning \texttt{npm run build} as if it is some sort of magic, now it's time to look a little bit closer.
-
-\subsection{\texttt{package.json}}
-
-This file contains basic information about our project (change the name and description if you like). What is more important is the dependencies and the devDependencies, it tells what \texttt{npm}\footnote{stands for Node Package Manager} what libraries you need to run this project, it is written by me, so all you have to do is to run \texttt{npm install} (what you did already in chapter 1), and it knows what to install for you, without the need of you specifying what to install.
-
-Also the scripts section specifies what will be run on \texttt{npm run ...}, from the line \texttt{"build": "gulp build"}, it means the command \texttt{gulp build} will be run when we run \texttt{npm run build}. More in \cref{sec:gulpfile}.
-
-\begin{lstlisting}[language=]
-{
-  "name": "static-web-sandbox",
-  "version": "2.0.0",
-  "description": "A very cool website.",
-  "dependencies": {
-    "gulp": "^4.0.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.2.0",
-    "@babel/preset-env": "^7.2.0",
-    "gulp-babel": "^8.0.0",
-    "gulp-changed": "^3.2.0",
-    "gulp-eslint": "^5.0.0",
-    "gulp-imagemin": "^5.0.3",
-    "gulp-less": "^4.0.1",
-    "gulp-pug": "^4.0.1",
-    "less-plugin-autoprefix": "^2.0.0"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "gulp build"
-  },
-  "license": "ISC"
+\begin{lstlisting}[language=pug]
+h2{
+    color: red;
+    margin: 4rem 0 4rem 0;
 }
 \end{lstlisting}
 
-\subsection{\texttt{node\textunderscore modules} folder}
-
-This folder is automatically generated when you run \texttt{npm install}.\footnote{To verify, remove this folder using \texttt{rm -rf node\textunderscore modules} and run \texttt{npm install} again.} It contains the library files you need to run this project, the project would not run without this folder. \textit{You do not need to edit this file at all.}
-
-\subsection{\texttt{package-lock.json}}
-
-This is an automatically generated file, it outlines in detail which version of the dependencies are installed. It automatically updates when you run \texttt{npm install}. \textit{You do not need to edit this file at all.}
-
-\subsection{\texttt{gulpfile.js}}
-\label{sec:gulpfile}
-
-This file is responsible for the translation process. As you can see, the task \texttt{pug} translates each \texttt{.pug} file under \texttt{app/templates/views} to HTML files and put them under \texttt{docs}. Similar translation happens for less files. The JavaScript files, images and fonts are copied to the \texttt{docs} folder.
-
-Finally, the task \texttt{build} runs all the above commands. Therefore, \texttt{gulp build} does what is is supposed to do. \textit{You do not need to edit this file at all.}
-
-\begin{lstlisting}[language=JavaScript]
-// gulpfile.js
-...
-
-//pug to html conversion
-gulp.task('pug', function(){
-  return gulp.src("app/templates/views/*.pug")
-  .pipe(changed("docs/")) //pipe files only if changed 
-  .pipe(pug({pretty:true})) //pug to html
-  .pipe(gulp.dest('docs/'));
-});
-
-//less to css conversion
-gulp.task('styling', function(){
-  return gulp.src("app/styles/site.less")
-  .pipe(changed("docs/styles")) //pipe files only if changed 
-  .pipe(less({
-    plugins: [autoprefix]
-  })) //less to css
-  .pipe(gulp.dest('docs/styles'));
-});
-
-gulp.task('js',function(){ ... });
-gulp.task('imagecopy',function(){ ... });
-gulp.task('fontcopy',function(){ ... });
-
-gulp.task('build',gulp.series('js','pug','styling','imagecopy','fontcopy'));
-
-\end{lstlisting}
-
-\subsection{\texttt{docs} folder}
-
-This folder is automatically generated when you run \texttt{run build}.\footnote{To verify, remove this folder using \texttt{rm -rf docs} and run \texttt{npm run build} again.} It is the output folder of the whole project, you can directly open the HTML files inside the folder. You should upload this folder to web servers in order to host it.
-\textit{You do not need to edit this file at all.}
+The HTML tag(s), class(es), or ID(s) before the curly braces is/are the elements you want to style. (more in \cref{sec:nestedstyles}) For now, we can just put one item there and there will be no confusion.
 \vspace{6mm}
 
-\textbf{IMPORTANT: Do NOT edit anything in the \texttt{docs} folder. Changes will be overwritten when you run \texttt{npm run build} again.}
+Then, what's inside the curly braces are the styles that we want to apply to the concerned elements. Each style consists of a \textbf{property} or \texttt{keyword} - \texttt{color} in our example, and \textbf{value(s)} - \texttt{red} in our example. When your property needs multiple values, separate them with a space, like what I did with the \texttt{margin} property, which as you will know later, needs 4 values. The property and the value(s) are separated by a colon. All styles are followed by a semi-colon. You can have multiple styles inside the curly braces. 
+\vspace{6mm}
 
-\subsection{\texttt{.gitignore}}
-\label{sec:gitignore}
+\section*{Further Resources}
 
-Because the \texttt{node\textunderscore modules} folder and the \texttt{docs} folder can be automatically generated on your own local machine. There is no need to put these onto GitHub. The \texttt{.gitignore} file lets you state the files and folders that you do not want to push to GitHub. It includes the two folders I have mentioned, and some others that are out of our scope.
+I didn't have this piece of notes back when I first learned Less. Here is \href{https://youtu.be/YD91G8DdUsw}{the video}\footnote{Link: \url{https://youtu.be/YD91G8DdUsw}} that I used to learn the basics. 
+
+CSS is well documented online, You could refer to the \href{https://www.w3schools.com/cssref/}{w3schools documentation}\footnote{Link: \url{https://www.w3schools.com/cssref/}} to learn how to use some more styling properties. 
+However, there is no need to understand every CSS style, the common ones are listed below, and you can google search for the uncommon ones. :)
+
+Moreover, the focus is on your ability to \textbf{combine different styling properties} to achieve what you want, not only on individual style properties. In that case, Google search serves you well. 
+
+\section{CSS Properties}
+
+\begin{table}[H]
+    \centering
+    \caption{Table of common Less (a.k.a. CSS) styling properties}
+    \vspace{6mm}
+    \begin{tabular}{|m{6.5em}|m{5em}|m{5.5em}|m{16em}|}
+        \hline
+        \textbf{Property} & 
+        Options/ Examples & 
+        Default &
+        Description
+        \\ \hline \hline
+        
+        \texttt{color}\tablefootnote{Sorry it has to be American spelling :(} &
+        See \cref{sec:colours} & 
+        \texttt{black} &
+        Sets the colour of the text. 
+        \\ \hline
+        
+        \texttt{background- color} &
+        See \cref{sec:colours} &
+        \texttt{transpar- ent}& 
+        Sets the colour of the background.
+        \\ \hline
+        
+        \texttt{text-align} &
+        \makecell[lb]{
+            \texttt{left}, \\
+            \texttt{center}\tablefootnote{Sorry it has to be American spelling :(},\\ \texttt{right}, \\ \texttt{justify} \\
+        } & 
+        \texttt{left} &
+        Sets the alignment of text. Justify means space is added between words so that both edges of each line are aligned with both margins.\tablefootnote{Note that justify might not work too well especially on mobile phones where the screen is thin, use left instead if that is the case.}
+        \\ \hline
+        
+        \texttt{font-size} &
+        \makecell[lb]{
+            in \texttt{rem} \\(\cref{sec:rem})
+        } &
+        \texttt{1 rem} &
+        Sets the font size of text
+        \\ \hline
+        
+        \texttt{height}/ \texttt{width}&
+        \makecell[lb]{
+            in \texttt{\%}, \\
+            in \texttt{px} \\
+            in \texttt{rem}
+        } & 
+        / &
+        Sets the width/ height of a certain element, usually an image. (\cref{sec:grid})
+        \\ \hline
+        
+        \texttt{display} &
+        \makecell[lb]{
+            \texttt{block}, \\
+            \texttt{none} \\
+            \texttt{flex}
+        } & 
+        \texttt{block} &
+        \texttt{block} is the normal one. Use \texttt{none} to hide the element. \texttt{flex} is used only with \cref{sec:flexbox}.
+        \\ \hline
+        
+        \texttt{margin} &
+        4 arguments in \texttt{rem} & 
+        \texttt{0 0 0 0} &
+        Sets the margin (additional spaces between elements) of the element in the order of top, right, bottom, left. (\cref{sec:marginpadding})
+        \\ \hline
+        
+        \texttt{padding} &
+        4 arguments in \texttt{rem} & 
+        \texttt{0 0 0 0} &
+        Sets the padding (additional spaces between elements) of the element in the order of top, right, bottom, left.  (\cref{sec:marginpadding})
+        \\ \hline
+        
+        \texttt{border} &
+        3 arguments &
+        / &
+        Sets the border of the element. 3 arguments - thickness (in \texttt{px}), type (usually \texttt{solid}) and colour (\cref{sec:marginpadding})
+        \\ \hline
+        
+        \multicolumn{3}{|l|}{\texttt{font-weight: bold;}} &
+        Makes the text bold
+        \\ \hline
+        
+        \multicolumn{3}{|l|}{\texttt{font-style: italic;}} &
+        Makes the text italic
+        \\ \hline
+        
+    \end{tabular}
+\end{table}
+
+I would like to stress that it is unnecessary to remember every CSS property by heart. For example, whenever I need to make some text italic, which is seldom the case, I would search "italic css" and \texttt{font-style: italic;} would pop up. 
+
+\subsection{Colours}
+\label{sec:colours}
+The colour for properties like \texttt{color}, \texttt{background-color} and \texttt{border} can be specified in RGB colour codes, e.g. \texttt{\#FFFFFF} indicates white, \texttt{\#FF0000} indicates red. You do not need to dig deep on how the colour code works, you could just find your desired colour using a random RGB colour picker online, such as the one you get  \href{https://www.rapidtables.com/web/color/RGB_Color.html}{following this URL}\footnote{Choose your colour: \url{https://www.rapidtables.com/web/color/RGB_Color.html}}.   \href{https://www.w3.org/wiki/CSS/Properties/color/keywords}{Common colours}\footnote{Full list of "common" colours: \url{https://www.w3.org/wiki/CSS/Properties/color/keywords}} can be specified in text for your convenience, like \texttt{red}.
+
+\begin{lstlisting}
+.blue-text{
+    color: #0000FF; 
+}
+\end{lstlisting}
+
+The default value for \texttt{background-color} is \texttt{transparent}. It is important to distinguish between a white background and a transparent background. 
+
+\subsection{Unit for size - \texttt{rem}}
+\label{sec:rem}
+
+The unit for size for properties like \texttt{font-size}, \texttt{margin} and \texttt{padding} is interesting. As \texttt{rem} scales based on screen size while other units like \texttt{px} will not, \texttt{rem} is the ideal unit for text, margins and paddings. \footnote{For more information, refer to \url{https://engageinteractive.co.uk/blog/em-vs-rem-vs-px} if interested.} Normal text should have a font size of 1 rem. Therefore, 1.25rem is used in my example in \cref{sec:classesids} to indicate a slightly larger text but not overwhelmingly large.
+
+\begin{lstlisting}[language=pug]
+// app/styles/site/abouts.less
+.large-text{
+    font-size: 1.25rem;
+}
+\end{lstlisting}
+
+Size of images might be an exception, using \texttt{px} might be more convenient because you might not want your images to scale on screen size change, or more commonly, we will use the \texttt{width: 100\%} technique introduced in \cref{sec:width}.
+
+\section{Browser developer tools} 
+
+Tools provided by browsers can help significantly with styling. Every browser got their own one, accessible in sightly different ways and sightly different interfaces. I will be using Brave (similar to Google Chrome) in this piece of notes.
+
+If you are using a different browser, or would like to know more details, refer to \href{https://www.hostinger.co.uk/tutorials/website/how-to-inspect-and-change-style-using-google-chrome}{this documentation}, with illustrations on how to open the developer tools for different browsers for your convenience.
+\vspace{6mm}
+
+First of all, open one of our HTML files in the \texttt{docs} folder. Then right click, then select \texttt{inspect}. Then a window should appear on the side, select the \texttt{Elements} menu and the \texttt{styles} menu. (see \cref{fig:devtools})
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=15cm]{images/chn6-full-translation.png}
-\caption{Overview of the translation process}
-\label{fig:createnewrepo}
+\includegraphics[width=14cm]{images/chn6-devtools.png}
+\caption{The developer tools menu}
+\label{fig:devtools}
 \end{figure}
 
-\section{Other files}
-
-\subsection{\texttt{README.md}}
-\label{sec:readme}
-
-This file serves as a documentation. It will be displayed on GitHub. You should write a description of your project, and how to install and use it in here. The syntax is a bit weird, refer \href{https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax}{here}\footnote{Link: \url{https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax}} if you want to write your own README.
-
-\subsection{\texttt{.eslintrc}}
-
-\textit{Of less importance}
+In the \texttt{Elements} menu, you can select an element that you are interested in, and you can see the styles applied to it in the \texttt{styles} menu. Alternatively, you can right click on that element and select \texttt{inspect} to focus on that element as well.
 \vspace{6mm}
-This file stores the JavaScript settings and version we are using, so as to check for syntax errors when copying JavaScript files from \texttt{app} to \texttt{docs}. \textit{You do not need to edit this file at all.}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=14cm]{images/chn6-devtools2.png}
+\caption{The developer tools menu, focusing on a specific element}
+\label{fig:devtools2}
+\end{figure}
+
+We can write some temporary styles under \texttt{element.style} (as indicated in \cref{fig:devtools2}), the things we write there would be cleared when we refresh the page. It is a common practice to test out the styling properties that we want to apply to the element(s) here first, then we only copy our code to the less file when we are satisfied, this saves time building the code and defining classes and IDs. Again, be sure to record down what you styled before refreshing the page, as the styles will be gone on refresh. 
+\vspace{6mm}
+
+Remember we are planning to make our web page \textbf{responsive}, meaning that the elements should rearrange and scale, making out web page look good on mobile. To simulate what you will see on mobile devices, just enlarge the developer tools to the right to shrink the page, or you can use a mobile phone simulator by Chrome by clicking one of the buttons on the top left of the developer tools menu.
+
+You will also notice in \cref{fig:devtools2} there is a crossed out style. It means the default black colour of the text is being overridden by our style that sets it to red. More explanation would be in \cref{sec:stylingpriority}.
+\vspace{6mm}
+
+\textbf{Remember to the browser styling tools often}
+
+\section{Nested styles}
+\label{sec:nestedstyles}
+
+Things could get complicated when we try to reference more complex things from the Pug file.
+
+There are three types of nesting. 
+
+\begin{itemize}
+\item \textbf{Within} - spaces in between
+
+We are styling all \texttt{h3} within \texttt{\#quote} in the following example.
+    
+\begin{lstlisting}[language=pug]
+// app/styles/site/abouts.less
+#quote h3 {
+    text-align: center;
+}
+\end{lstlisting}
+    
+\begin{lstlisting}[language=pug]
+//- app/templates/views/abouts.pug
+#quote 
+    h3 Numbers are beautiful    <-- THIS ONE
+    ...
+h3 Will not be styled as it is outside #quote
+\end{lstlisting}
+    
+\item \textbf{and} - no spaces in between
+
+We are styling all elements with BOTH classes \texttt{.beautiful} and \texttt{.cooler} in the following example.
+    
+\begin{lstlisting}[language=pug]
+// LESS
+.beautiful.cooler {
+    font-style: italic;
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=pug]
+//- PUG
+p.beautiful.cooler Will be styled    <-- THIS ONE
+p.beautiful Will not be styled as it only has one class
+.beautiful
+    p.cooler Will not be styled, do not mix it up with the "within" case
+\end{lstlisting}
+
+\item \textbf{or} - comma in between
+
+We are styling all elements with either classes \texttt{.beautiful} or \texttt{.cooler} in the following example.
+    
+\begin{lstlisting}[language=pug]
+// LESS
+.beautiful, .cooler {
+    font-style: italic;
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=pug]
+//- PUG
+p.beautiful.cooler Will be styled 
+p.beautiful Will not be styled 
+p.cooler Will be styled
+\end{lstlisting}
+
+\end{itemize}
+
+(All elements in the above examples can be any tags, classes or IDs.)
+
+\section{Size and positioning}
+
+In this section we will focus on getting the book of numbers image into position with the correct size in our sample abouts page as an example. 
+
+First and foremost, we give the image an ID. 
+
+\begin{lstlisting}
+//- app/templates/views/abouts.pug
+img#bookofnumbers(src="images/bookofnumbers.jpg")
+\end{lstlisting}
+
+\subsection{Width and height}
+\label{sec:width}
+
+We can set the size of the image by using \texttt{width} and \texttt{height}.
+
+We can try either of these
+
+\begin{itemize}
+\item Only setting the width or height in px
+    
+\begin{lstlisting}[language=pug]
+#bookofnumbers{
+    width: 700px;
+}
+\end{lstlisting}
+
+You can see it's height scales with the width, this is the behaviour when only \texttt{height} or \texttt{width} is specified.
+
+However, there seems to be no number that does the job perfectly in our case. Making it too small will make the image too small for large screens, and making it too large makes the image too large to be shown in full on small screens. 
+
+This approach sometimes works when the image is small, smaller than the width of small screens. (e.g. mobile phones)
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=7cm]{images/chn6-widthonly.png}
+\caption{Result of setting width to 700px, looks bad on small screens (also shows you the button for the mobile view in the developer tools)}
+\end{figure}
+
+\item Setting both the width and height
+
+\begin{lstlisting}[language=pug]
+#bookofnumbers{
+    width: 700px;
+    height: 100px;
+}
+\end{lstlisting}
+
+The image scales according to the width and height you specified, the aspect ratio changes as well. It usually comes out to be quite ugly as the aspect ratio is distorted. If you find yourself calculating the aspect ratio by hand before entering it, you probably don't need to because you can use the previous approach (providing either width or height) and the image will then be scaled based on its aspect ratio.
+
+This approach usually gives ugly results and is seldom used.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=10cm]{images/chn6-widthandheight.png}
+\caption{Result of setting both width and height, would not recommend}
+\end{figure}
+
+\item Setting the width or height in percentages
+
+\begin{lstlisting}[language=pug]
+#bookofnumbers{
+    width: 100%;
+}
+\end{lstlisting}
+
+We are now setting the image to be as wide as it's parent, in this case it is the \texttt{.container} (see \cref{sec:container}, it will be aligned well with other texts. 
+
+Again, there seems to be no number that fits perfectly. Setting it to 100\% makes the image super large for large screens, while setting it to a smaller number, like 50\%, makes the image too small in smaller screens.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=15cm]{images/chn6-w100.png}
+\caption{Result of setting width to 100\%, too big for large screens}
+\end{figure}
+
+\end{itemize}
+
+We have to find better ways of doing this, a way that reacts to different screen widths better.
+
+\subsection{Grid system}
+\label{sec:grid}
+
+% You can either specify it in pixels, or more interestingly, in percentage with respect to the screen. Setting width to be 100\% can be useful when paired with the grid system (\cref{sec:grid}) is quite a nice combo.
+
+
+The grid system is provided by \href{https://getbootstrap.com/docs/5.2/layout/grid}{Bootstrap}\footnote{Full documentation: \url{https://getbootstrap.com/docs/5.2/layout/grid}}. The idea is to split the screen into 12 equal width columns. Then we allocate different number of columns to each element based on the screen size.
+
+There are 6 screen sizes, \texttt{xs}, \texttt{sm}, \texttt{md}, \texttt{lg}, \texttt{xl}, \texttt{xxl}.
+
+We need to surround all elements involved in the grid system with a \texttt{.row} class. To declare number of columns for each screen size, we use \texttt{col-<screensize>-\hfill \break <no.ofcolumns>} (except for xs screens you must not add \texttt{-xs}\footnote{This is Bootstrap's way of reminding us that they employ the "mobile first" principle}). For example, \texttt{.col-12.col-sm-12.col-md-6.col-lg-4.col-xl-3.col-xxl-3} means that the element would occupy the whole screen when the screen is an xs or small screen; half of medium screen, 1/3 of large screens, and 1/4 of xl or xxl screens. Now we would add this style to the abouts page Pug file. Making the reference book info section and the book image side by side when the screen is large enough. The number of columns occupied by the text increases as screen size increases so that the book image is always aligned to the right. (by making the total number of occupied columns adding up to 12)
+\vspace{6mm}
+
+\begin{lstlisting}[language=pug]
+//- templates/views/abouts.pug
+.row
+    .col-12.col-sm-12.col-md-6.col-lg-8.col-xl-9.col-xxl-9
+        ul
+            li.large-text Book name: The Book of Numbers
+            li Author: Tim Glynne-Jones
+            li Publisher: Arcturus Publishing Limited
+            li.large-text Project name: "Numbers are Fun!"
+            li.large-text.blue-text Topics chosen: 9, 11, 30, 365.25
+        a(href="#self-intro") Back to top
+    .col-12.col-sm-12.col-md-6.col-lg-4.col-xl-3.col-xxl-3
+        img#bookofnumbers(src="images/bookofnumbers.jpg")
+        p.blue-text The Book of Numbers
+\end{lstlisting}
+
+\begin{lstlisting}[language=pug]
+// app/styles/site/abouts.less
+#bookofnumbers{
+    width: 100%;
+}
+\end{lstlisting}
+
+There will be more applications of the grid system when \hyperref[sec:cards]{implementing cards in the next chapter.}
+\subsection{Flexbox}
+\label{sec:flexbox}
+
+\textit{Advanced}
+\vspace{6mm}
+
+Sometimes you would like to position an unknown number of elements, or a number that is not divisible by 12, then using the grid system might not be a good idea. We can use flexbox in these scenario. It is \href{https://css-tricks.com/snippets/css/a-guide-to-flexbox/}{well documented}\footnote{Documentation: \url{https://css-tricks.com/snippets/css/a-guide-to-flexbox/}} with clear illustrations. And here is an \href{https://flexboxfroggy.com/}{interactive tutorial}\footnote{Tutorial: \url{https://flexboxfroggy.com/}}. In order to use all the styles listed in there, you first have to surround the elements involved with an element with the style \texttt{display: flex;}, bring all the elements within it to the "flex world".
+
+It could be hard to get right at first, I recommend using the browser developer mode to experiment more with flexbox, add the related stles to different layers of elements and see which ones works. 
+
+Learning the concept of flexbox is useful when building apps.
+
+\section{Margins and paddings}
+\label{sec:marginpadding}
+\label{sec:margin}
+
+\section{Styling priority}
+\label{sec:stylingpriority}
+
+\section{Using variables}
