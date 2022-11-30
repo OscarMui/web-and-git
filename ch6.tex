@@ -5,7 +5,7 @@
 We will demonstrate some styling techniques, by using an example we set up earlier on an abouts page (\cref{fig:aboutspage}). We have set up the contents of the abouts page in \cref{sec:pug1}, and now let's make it look prettier!
 \vspace{6mm}
 
-Less is used in place of CSS for reasons that we may explore later down the chapter. But for now, we can just treat it as CSS. Because Less is a superset of CSS (i.e. all valid CSS codes are valid less codes). All knowledge you have learnt about CSS before can be transferable to Less, but we will start from scratch anyways for those of you who have not learnt CSS before.
+Less is used in place of CSS for reasons that we may explore down the chapter. But for now, we can just treat it as CSS. Because Less is a superset of CSS (i.e. all valid CSS codes are valid less codes). All knowledge you have learnt about CSS before can be transferable to Less, but we will start from scratch anyways for those of you who have not learnt CSS before.
 
 % Less is used in place of CSS, to provide syntactic sugars\footnote{"Syntactic sugar" is a term for syntax changes in computer programming which make it easier for humans to code.} for us to make our lives easier, including nested styles and variables. 
 
@@ -48,7 +48,7 @@ The HTML tag(s), class(es), or ID(s) before the curly braces is/are the elements
 Then, what's inside the curly braces are the styles that we want to apply to the concerned elements. Each style consists of a \textbf{property} or \texttt{keyword} - \texttt{color} in our example, and \textbf{value(s)} - \texttt{red} in our example. When your property needs multiple values, separate them with a space, like what I did with the \texttt{margin} property, which as you will know later, needs 4 values. The property and the value(s) are separated by a colon. All styles are followed by a semi-colon. You can have multiple styles inside the curly braces. 
 \vspace{6mm}
 
-\section*{Further Resources}
+\subsection*{Further Resources}
 
 I didn't have this piece of notes back when I first learned Less. Here is \href{https://youtu.be/YD91G8DdUsw}{the video}\footnote{Link: \url{https://youtu.be/YD91G8DdUsw}} that I used to learn the basics. 
 
@@ -239,7 +239,18 @@ We are styling all \texttt{h3} within \texttt{\#quote} in the following example.
     ...
 h3 Will not be styled as it is outside #quote
 \end{lstlisting}
-    
+
+Less allows we to also do the nesting like this, that is equivalent to \texttt{\#quote h3}. I need to stress that this is only valid in Less but not in normal CSS. (You can verify this by comparing our less code with \texttt{dist/styles/site.css})
+
+\begin{lstlisting}[language=pug]
+// app/styles/site/abouts.less
+#quote {
+    h3 {
+        text-align: center;
+    }
+}
+\end{lstlisting}
+
 \item \textbf{and} - no spaces in between
 
 We are styling all elements with BOTH classes \texttt{.beautiful} and \texttt{.cooler} in the following example.
@@ -280,6 +291,39 @@ p.cooler Will be styled
 \end{itemize}
 
 (All elements in the above examples can be any tags, classes or IDs.)
+
+As an example, let's style the quote in our abouts page example.
+
+\begin{lstlisting}[language=pug]
+//- templates/views/abouts.pug
+#quote
+    h3 Numbers are Beautiful
+    p KidProf
+\end{lstlisting}
+
+First we add a grey \texttt{background-color} to the quote. We also want \textbf{all} the text within it to be white. At the same time, I want \textbf{only} the \texttt{h3} tag to be centred and white while \textbf{only} the \texttt{p} tag to be right aligned.
+
+\begin{lstlisting}[language=pug]
+// app/styles/site/abouts.less
+#quote {
+    background-color: #888;
+    color: white;
+    h3{
+        text-align: center;
+        font-style: italic;
+    }
+    p{
+        text-align: right;
+    }
+}
+\end{lstlisting}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=15cm]{images/chn6-quote1.png}
+\caption{Result of the quote up to \cref{sec:nestedstyles}}
+\end{figure}
+
 
 \section{Size and positioning}
 
@@ -347,7 +391,7 @@ This approach usually gives ugly results and is seldom used.
 }
 \end{lstlisting}
 
-We are now setting the image to be as wide as it's parent, in this case it is the \texttt{.container} (see \cref{sec:container}, it will be aligned well with other texts. 
+We are now setting the image to be as wide as it's parent, in this case it is the \texttt{.container} (see \cref{sec:container}), it will be aligned well with other texts. 
 
 Again, there seems to be no number that fits perfectly. Setting it to 100\% makes the image super large for large screens, while setting it to a smaller number, like 50\%, makes the image too small in smaller screens.
 
@@ -361,34 +405,38 @@ Again, there seems to be no number that fits perfectly. Setting it to 100\% make
 
 We have to find better ways of doing this, a way that reacts to different screen widths better.
 
-\subsection{Grid system}
+\subsection{Bootstrap Grid system}
 \label{sec:grid}
 
 % You can either specify it in pixels, or more interestingly, in percentage with respect to the screen. Setting width to be 100\% can be useful when paired with the grid system (\cref{sec:grid}) is quite a nice combo.
 
 
-The grid system is provided by \href{https://getbootstrap.com/docs/5.2/layout/grid}{Bootstrap}\footnote{Full documentation: \url{https://getbootstrap.com/docs/5.2/layout/grid}}. The idea is to split the screen into 12 equal width columns. Then we allocate different number of columns to each element based on the screen size.
+The grid system provided by \href{https://getbootstrap.com/docs/5.2/layout/grid}{Bootstrap}\footnote{Full documentation: \url{https://getbootstrap.com/docs/5.2/layout/grid}} might be a solution to this. The idea is to split the screen into 12 equal width columns. Then we allocate different number of columns to each element based on the screen size.
 
 There are 6 screen sizes, \texttt{xs}, \texttt{sm}, \texttt{md}, \texttt{lg}, \texttt{xl}, \texttt{xxl}.
 
-We need to surround all elements involved in the grid system with a \texttt{.row} class. To declare number of columns for each screen size, we use \texttt{col-<screensize>-\hfill \break <no.ofcolumns>} (except for xs screens you must not add \texttt{-xs}\footnote{This is Bootstrap's way of reminding us that they employ the "mobile first" principle}). For example, \texttt{.col-12.col-sm-12.col-md-6.col-lg-4.col-xl-3.col-xxl-3} means that the element would occupy the whole screen when the screen is an xs or small screen; half of medium screen, 1/3 of large screens, and 1/4 of xl or xxl screens. Now we would add this style to the abouts page Pug file. Making the reference book info section and the book image side by side when the screen is large enough. The number of columns occupied by the text increases as screen size increases so that the book image is always aligned to the right. (by making the total number of occupied columns adding up to 12)
+We need to surround all elements involved in the grid system with a \texttt{.row} class. To declare number of columns for each screen size, we use \texttt{col-<screensize>-\hfill \break <no.ofcolumns>} (except for xs screens you must not add \texttt{-xs}\footnote{This is Bootstrap's way of reminding us that they employ the "mobile first" principle}). For example, \texttt{.col-12.col-sm-12.col-md-6.col-lg-4.col-xl-3.col-xxl-3} means that the element would occupy the whole screen when the screen is an xs or small screen; half of medium screen, 1/3 of large screens, and 1/4 of xl or xxl screens. 
+
+Now we would add this style to the abouts page Pug file. Making the reference book info section and the book image side by side when the screen is large enough. The number of columns occupied by the text increases as screen size increases so that the book image is always aligned to the right. (by making the total number of occupied columns adding up to 12)
 \vspace{6mm}
 
 \begin{lstlisting}[language=pug]
 //- templates/views/abouts.pug
 .row
-    .col-12.col-sm-12.col-md-6.col-lg-8.col-xl-9.col-xxl-9
-        ul
-            li.large-text Book name: The Book of Numbers
-            li Author: Tim Glynne-Jones
-            li Publisher: Arcturus Publishing Limited
-            li.large-text Project name: "Numbers are Fun!"
-            li.large-text.blue-text Topics chosen: 9, 11, 30, 365.25
-        a(href="#self-intro") Back to top
-    .col-12.col-sm-12.col-md-6.col-lg-4.col-xl-3.col-xxl-3
-        img#bookofnumbers(src="images/bookofnumbers.jpg")
-        p.blue-text The Book of Numbers
+	.col-12.col-sm-12.col-md-6.col-lg-8.col-xl-9.col-xxl-9
+		ul
+			li.large-text Book name: The Book of Numbers
+			li Author: Tim Glynne-Jones
+			li Publisher: Arcturus Publishing Limited
+			li.large-text Project name: "Numbers are Fun!"
+			li.large-text Topics chosen: 9, 11, 30, 365.25
+		a(href="#quote") Back to top
+	.col-12.col-sm-12.col-md-6.col-lg-4.col-xl-3.col-xxl-3
+		img#bookofnumbers(src="images/bookofnumbers.jpg")
+		p The Book of Numbers
 \end{lstlisting}
+
+Then we set the image to be as wide as the column width. Remember \texttt{width: 100\%} sets the width of the image to be as wide as its parent, in this case it is the column.
 
 \begin{lstlisting}[language=pug]
 // app/styles/site/abouts.less
@@ -397,24 +445,417 @@ We need to surround all elements involved in the grid system with a \texttt{.row
 }
 \end{lstlisting}
 
-There will be more applications of the grid system when \hyperref[sec:cards]{implementing cards in the next chapter.}
+You can experiment with different screen sizes by changing the browser window size.
+
+The grid system is very useful. There will be more applications of the grid system in \cref{sec:cards}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=5cm]{images/chn6-grid-xs.png}
+\caption{Result of using the grid system on xs screens}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=15cm]{images/chn6-grid-md.png}
+\caption{Result of using the grid system on md screens, also with illustrations on how to know which screen size we are currently in}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{images/chn6-grid-xl.png}
+\caption{Result of using the grid system on xl screens}
+\end{figure}
+
 \subsection{Flexbox}
 \label{sec:flexbox}
 
 \textit{Advanced}
 \vspace{6mm}
 
-Sometimes you would like to position an unknown number of elements, or a number that is not divisible by 12, then using the grid system might not be a good idea. We can use flexbox in these scenario. It is \href{https://css-tricks.com/snippets/css/a-guide-to-flexbox/}{well documented}\footnote{Documentation: \url{https://css-tricks.com/snippets/css/a-guide-to-flexbox/}} with clear illustrations. And here is an \href{https://flexboxfroggy.com/}{interactive tutorial}\footnote{Tutorial: \url{https://flexboxfroggy.com/}}. In order to use all the styles listed in there, you first have to surround the elements involved with an element with the style \texttt{display: flex;}, bring all the elements within it to the "flex world".
+In rare occasions you would like to position an unknown number of elements (like in \cref{sec:navbar}), or a number that is not divisible by 12, then using the grid system might not be a good idea. We can use flexbox in these scenarios. It is \href{https://css-tricks.com/snippets/css/a-guide-to-flexbox/}{well documented}\footnote{Documentation: \url{https://css-tricks.com/snippets/css/a-guide-to-flexbox/}} with clear illustrations, and \href{https://flexboxfroggy.com/}{this URL is an interactive tutorial called Flexbox Froggy (it is very fun)}\footnote{Tutorial: \url{https://flexboxfroggy.com/}}, so I will not repeat it here. In order to use all the styles listed in there, you first have to surround the elements involved with an element with the style \texttt{display: flex;}, bringing all the elements within it to the "flex world".
 
-It could be hard to get right at first, I recommend using the browser developer mode to experiment more with flexbox, add the related stles to different layers of elements and see which ones works. 
+It could be hard to get right at first, I recommend using the browser developer mode to experiment more with flexbox, add the related stles to different layers of elements and see which ones works, before implementing it in our Less files because we probably cannot get it right first try.
 
-Learning the concept of flexbox is useful when building apps.
+And one side note, learning the concept of flexbox is useful when building apps.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=10cm]{images/chn6-flexboxfroggy.png}
+\caption{Flexbox Froggy}
+\end{figure}
 
 \section{Margins and paddings}
 \label{sec:marginpadding}
 \label{sec:margin}
 
+\subsection*{Leaving spaces between elements}
+
+Both margins and paddings give spaces between elements, they are the same unless background colour or border is involved, or if the element is clickable.
+
+Say we want to add some space at the bottom of the project description. We can add an ID to the \texttt{p} tag and reference it using that.
+
+\begin{lstlisting}[language=pug]
+//- templates/views/abouts.pug
+p#proj-desc.
+    In this project, ...
+\end{lstlisting}
+
+\begin{lstlisting}[language=pug]
+// app/styles/site/abouts.less
+#proj-desc{
+    margin: 0 0 2rem 0;
+}
+\end{lstlisting}
+
+Note that \texttt{margin} and \texttt{padding} takes 4 arguments, specifying the margin/ padding you want to apply to the \texttt{top}, \texttt{left}, \texttt{bottom}, \texttt{right} of the element. Remember the unit should be \texttt{rem} as explained in \cref{sec:rem}.
+
+Let's try to replace it with a padding.
+
+\begin{lstlisting}[language=pug]
+#proj-desc{
+    padding: 0 0 2rem 0;
+}
+\end{lstlisting}
+
+That order is not easy to understand at all. Luckily CSS provides an alternative. You can just specify the direction, separated with a hyphen after \texttt{margin}.
+
+\begin{lstlisting}[language=pug]
+#proj-desc{
+    margin-bottom: 2rem;
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=pug]
+#proj-desc{
+    padding-bottom: 2rem;
+}
+\end{lstlisting}
+
+Similarly we got \texttt{margin-left}, \texttt{margin-top}, \texttt{margin-right}, \texttt{padding-left}, \texttt{padding-top}, \texttt{padding-right}. 
+
+We can use both margins and paddings. The resultant spacing would be the sum of spacings. 
+
+\begin{lstlisting}[language=pug]
+#proj-desc{
+    margin-bottom: 0.5rem;
+    padding-bottom: 1.5rem;
+}
+\end{lstlisting}
+
+The options listed above should be all equivalent. Feel free to change the numbers to get a feel of how large \texttt{rem} is.
+\vspace{6mm}
+
+Another cheesy alternative is to add \texttt{br} tags between elements to give the same effect. 
+
+\subsection*{Background colour}
+
+Behaviour of margins and paddings are not the same when you have a background colour. Let's try to add a margin\footnote{It could be simplified as \texttt{margin: 1rem;} but I don't want to confuse you too much.} all around quote where in \cref{sec:nestedstyles} we added a grey background colour for it. Our aim is to move the texts a bit more to the middle because it seems that the texts are too close to the edges of the grey background.
+
+\begin{lstlisting}[language=pug]
+#quote{
+    ... (add it below your existing styles)
+    margin: 1rem 1rem 1rem 1rem;
+}
+\end{lstlisting}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=8cm]{images/chn6-quote-margin.png}
+\caption{Result of applying margins to the quote}
+\end{figure}
+
+Replace it with a padding and notices the differences.
+
+\begin{lstlisting}[language=pug]
+#quote{
+    padding: 1rem 1rem 1rem 1rem;
+}
+\end{lstlisting}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=8cm]{images/chn6-quote-padding.png}
+\caption{Result of applying paddings to the quote}
+\end{figure}
+
+Both the padding and margin pushes the texts inwards for some spacing. Note that padding extends the background colour while margins will not. Seems for our example, adding paddings looks better than adding margins.
+
+Another place where it might be different would be when the element is clickable (e.g. a \texttt{button}), if you click on its padding, it will still respond, but if you click on its margin it will not.
+\vspace{6mm}
+
+One side note, I noticed that the quote is quite close to the \texttt{About the project} header, let's add some spacing there as well. Think about whether we should use margin or padding?
+
+\begin{lstlisting}[language=pug]
+//- app/styles/site/abouts.less
+#quote{
+    padding: 1rem 1rem 1rem 1rem;
+    margin-bottom: 2rem;
+}
+\end{lstlisting}
+
+I suppose margin would do a better job here. We want the header to be away from the grey background so we do not want to extend the grey background. 
+\vspace{6mm}
+
+Browser developer tools might help a bit, you can scroll to the very bottom of the styles tab, and you can see the margin, border and padding applied to the active element. The active element is also shaded, the blue colour represents the internal contents of the element, the green colour represents its padding and the orange colour represents its margin.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=15cm]{images/chn6-quote-chrome.png}
+\caption{Browser developer tools that helps with margins and paddings}
+\end{figure}
+
+Don't stress yourself out that you need to make it right first try, feel free to experiment around and see which styles makes it look nicer. You could also experiment with the number you put as the attribute. After all styling is an artistic and creative activity. 
+
+\subsection*{Border}
+
+Border will be added between the margin and the padding. \texttt{border} receives 3 arguments - thickness (in \texttt{px}), type (usually \texttt{solid}) and colour. For example, this creates a thin red border around our quote.
+
+\begin{lstlisting}[language=pug]
+//- app/styles/site/abouts.less
+#quote{
+    ... (add it below your existing styles)
+    border: 2px solid red;
+}
+\end{lstlisting}
+
+Ewww. That looks not too great, let's just remove it. The point is to let you have a look on how to add a border. 
+
+\subsection*{Other styling on the quote}
+
+I am just determined to make the quote prettier. So I made the \texttt{h3} tag italic using \texttt{font-style: italic;} and to create rounded edges around the grey background, we uses \texttt{border-radius: 10px;}. 
+\vspace{6mm}
+
+How am I sure which property keywords to use? I don't know I just ask Google. (e.g. searching "CSS text italic" and "CSS rounded edges" respectively)
+\vspace{6mm}
+
+How am I sure if the numbers are right? (\texttt{10px} for \texttt{border-radius}? \texttt{2rem} for \texttt{margin-bottom}?) I don't know. Just experiment in the browser developer tools until I found it satisfactory.
+\vspace{6mm}
+
+To conclude, this is all the styles we applied to the quote.
+\begin{lstlisting}[language=pug]
+#quote {
+    background-color: #888;
+    color: white;
+    padding: 1rem 1rem 1rem 1rem;
+    margin-bottom: 2rem;
+    // border: 1px solid red; (commented)
+    border-radius: 10px;
+    h3{
+        text-align: center;
+        font-style: italic;
+    }
+    p{
+        text-align: right;
+    }
+}
+\end{lstlisting}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=8cm]{images/chn6-quote.png}
+\caption{Result of the quote up to \cref{sec:marginpadding}}
+\end{figure}
+
+
 \section{Styling priority}
 \label{sec:stylingpriority}
 
-\section{Using variables}
+Let's say we add a new style to all \texttt{h3} tags in the whole website, asking them all to be aligned to the right. Remember by convention, we put styles that affect the whole website in \texttt{app/styles/site/layout.less}
+
+\begin{lstlisting}[language=pug]
+// recalling what we had in app/styles/site/abouts.less
+#quote {
+    h3{
+        text-align: center;
+    }
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=pug]
+// app/styles/site/layout.less
+h3{
+    text-align: right;
+}
+\end{lstlisting}
+
+Notice that it has no effect on the \texttt{h3} tag with text \texttt{Numbers are beautiful!}. Because \texttt{\#quote h3} is more \textbf{specific} than \texttt{h3}. Our original style that tells that particular \texttt{h3} tag to be centred is more specific than the newly defined style which tells all \texttt{h3} tags to be styled. 
+
+How to define more specific systematically? You could follow this URL to get the full answer. But the short answer here (and the answer you need) is that \textbf{styles referencing elements using IDs have priority}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=10cm]{images/chn6-stylingpriority.png}
+\caption{In the browser developer tools, the style \texttt{text-align: right} is being crossed out, meaning it is being overridden by a more specific style.}
+\end{figure}
+
+\subsection*{Prioritising page styles over global styles}
+
+We would usually define some global styles for some web page. However, sometimes we want one or two pages to look different from the rest of the pages. We may end up with conflicting styles like what we had previously, and the priority is not clear. Remember just writing your code in \texttt{abouts.less} would not help you increase the priority of your styles, doing so is just a convention.  
+
+However, we can do something to enforce the convention. We can add an ID surrounding all elements in the abouts page.
+
+\begin{lstlisting}[language=pug]
+//- app/templates/views/abouts.pug
+extends ../layouts/default
+
+block content
+    #abouts //- <-- ID here
+        .container 
+    	#quote
+    		....
+    	h2#red-header.top-margin About the project
+    	p#proj-desc.
+    		...
+    	.row
+                ...
+\end{lstlisting}
+
+We also enclose all styles for the abouts page with an ID.
+
+\begin{lstlisting}[language=pug]
+//- app/styles/site/abouts.less
+#abouts{
+    #bookofnumbers{
+        width: 100%;
+    }
+    .larger-text{
+        font-size: 1.25rem;
+    }
+    ...
+}
+\end{lstlisting}
+
+Now all code inside \texttt{abouts.less} only applies to the abouts page but not the other pages, and also because of the ID, our code has higher priority than the global styles we defined in \texttt{layouts.less}
+
+As an example, we are going to add a background colour to the pages. By default, I want all pages to have a light blue colour (colour code: \texttt{\#BAE9FF}), however, I want the abouts page to have a yellow colour (color code: \texttt{\#F9F0BB}).
+
+We can achieve that by:
+
+\begin{lstlisting}[language=pug]
+// app/styles/site/layout.less - styles for all pages
+body{ //styling the whole HTML body
+    background-color: #BAE9FF;
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=pug]
+// app/styles/site/abouts.less - styles for the abouts page
+#abouts {
+    background-color: #F9F0BB;
+}
+\end{lstlisting}
+
+\cref{fig:aboutsfinal} gives the result of the styles. Might not be what you expected, because the navbar and the footer are still using the default global light blue colour. Sadly we could not do any better because currently the \texttt{\#abouts} ID is only controlling the things under the \texttt{block content} (see \cref{sec:puglayouts}). Unfortunately it has to stay like that for a while until \cref{sec:navbar}, where we move up the ID to \texttt{layouts.pug} with the help of Pug variables.
+
+\section{Using variables in Less}
+\label{sec:lessvariables}
+There are two important Less features that CSS doesn't have.
+\begin{itemize}
+\item Nested styles in the form of multiple curly braces.
+
+\begin{lstlisting}[language=pug]
+// LESS
+#abouts {
+    #bookofnumbers { ... }
+    .larger-text { ... }
+    #quote {
+        h3 { ... }
+        p { ... }
+    }
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=pug]
+// CSS 
+#abouts #bookofnumbers { ... }
+#abouts .larger-text { ... }
+#abouts #quote h3 { ... }
+#abouts #quote p { ... }
+\end{lstlisting}
+
+Less can certainly allow you write \textit{less} code.
+
+\item Variables, which we would discuss now
+
+Variable names must start with an @. You are advised to put all variables in \texttt{app/styles/site/variables.less} We define new variables like this:
+
+\begin{lstlisting}[language=pug]
+//- app/styles/site/variables.less
+@home-bg-color: #BAE9FF;
+@abouts-bg-color: #F9F0BB;
+\end{lstlisting}
+
+We use variables like this:
+
+\begin{lstlisting}[language=pug]
+// app/styles/site/layout.less
+body{
+    background-color: @home-bg-color;
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=pug]
+// app/styles/site/abouts.less
+#abouts {
+    background-color: @abouts-bg-color;
+}
+\end{lstlisting}
+
+These changes should not affect the look of the page at all. 
+
+Less can certainly allow you remember \textit{less} things.
+
+\end{itemize}
+
+We would end our work on styling the sample abouts page for the time being. Here is the final code and the final web page for now.
+
+\begin{lstlisting}[language=pug]
+// app/styles/site/abouts.less
+#abouts{
+    background-color: @abouts-bg-color;
+    #bookofnumbers{
+        width: 100%;
+    }
+    
+    .larger-text{
+        font-size: 1.25rem;
+    }
+    
+    #red-header{
+        color: red;
+    }
+    
+    #proj-desc{
+        margin: 2rem 0 0 0;
+    }
+    
+    // .no-margin{
+    //     margin-bottom: 0;
+    // }
+    
+    #quote {
+        background-color: #888;
+        color: white;
+        padding: 1rem 1rem 1rem 1rem;
+        margin-bottom: 2rem;
+        // border: 1px solid red;
+        border-radius: 10px;
+        h3{
+            text-align: center;
+            font-style: italic;
+        }
+        
+        p{
+            text-align: right;
+        }
+    }
+}
+\end{lstlisting}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=13cm]{images/chn6-background-colour.png}
+\caption{Our progress on the abouts page up till \cref{sec:lessvariables}}
+\label{fig:aboutsfinal}
+\end{figure}
