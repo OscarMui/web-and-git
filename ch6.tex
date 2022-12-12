@@ -2,10 +2,10 @@
 \label{sec:styling}
 % Old Ch. 6
 
-We will demonstrate some styling techniques, by using an example we set up earlier on an abouts page (\cref{fig:aboutspage}). We have set up the contents of the abouts page in \cref{sec:pug1}, and now let's make it look prettier!
+We will demonstrate some styling techniques, by using an example we set up earlier on the abouts page (\cref{fig:aboutspage}). We have set up the contents of the abouts page in \cref{sec:pug1}, and now let's make it look prettier!
 \vspace{6mm}
 
-Less is used in place of CSS for reasons that we may explore down the chapter. But for now, we can just treat it as CSS. Because Less is a superset of CSS (i.e. all valid CSS codes are valid less codes). All knowledge you have learnt about CSS before can be transferable to Less, but we will start from scratch anyways for those of you who have not learnt CSS before.
+Less is used in place of CSS for reasons that we may explore down the chapter. But for now, we can just treat it as CSS. Because Less is a superset of CSS (i.e. all valid CSS codes are valid Less codes). All knowledge you have learnt about CSS before can be transferable to Less, but we will start from scratch anyways for those of you who have not learnt CSS before.
 
 % Less is used in place of CSS, to provide syntactic sugars\footnote{"Syntactic sugar" is a term for syntax changes in computer programming which make it easier for humans to code.} for us to make our lives easier, including nested styles and variables. 
 
@@ -13,12 +13,12 @@ Less is used in place of CSS for reasons that we may explore down the chapter. B
 
 \subsection*{Where to write my code?}
 
-As discussed in \cref{sec:lesslayout}, write your less code inside \texttt{app/styles/site}. 
+As discussed in \cref{sec:lesslayout}, you should write your Less code inside the \texttt{app/styles/site} folder. 
 \vspace{6mm}
 
-Different from \cref{sec:classesids} where we write all our styling code in \texttt{layout.less} for simplicity. We should reorganise it so that \texttt{layout.less} should contain styles that is used in all/ multiple pages; \texttt{variables.less} should contain all variables; and other files should contain styles that is only used in the page with the same name as the style file.
+Different from \cref{sec:classesids} where we write all our styling code in \texttt{layout.less} for simplicity. We should reorganise it so that \texttt{layout.less} only contains styles that is used in all or multiple pages; \texttt{variables.less} contains all variables; and other files contain styles that is only used in the page with the same name as the file.
 
-When you create a new less file, remember to include it inside \texttt{site.less}
+When you create a new Less file, remember to include it inside \texttt{site.less}
 
 \begin{lstlisting}
 // app/styles/site.less
@@ -33,7 +33,7 @@ When you create a new less file, remember to include it inside \texttt{site.less
 \subsection*{Syntax}
 
 We actually have done some styling already in \cref{sec:classesids}. Refer to that section if you want a recap.
-Let's now look at the same example again and we talk more about it.
+Let's now look at the same example again and we will talk more about it.
 
 \begin{lstlisting}[language=pug]
 h2{
@@ -42,10 +42,10 @@ h2{
 }
 \end{lstlisting}
 
-The HTML tag(s), class(es), or ID(s) before the curly braces is/are the elements you want to style. (more in \cref{sec:nestedstyles}) For now, we can just put one item there and there will be no confusion.
+The HTML tag(s), class(es), or ID(s) before the curly braces is/are the element(s) you want to style. (more in \cref{sec:nestedstyles}) For now, we can just put one item there and there will be no confusion.
 \vspace{6mm}
 
-Then, what's inside the curly braces are the styles that we want to apply to the concerned elements. Each style consists of a \textbf{property} or \texttt{keyword} - \texttt{color} in our example, and \textbf{value(s)} - \texttt{red} in our example. When your property needs multiple values, separate them with a space, like what I did with the \texttt{margin} property, which as you will know later, needs 4 values. The property and the value(s) are separated by a colon. All styles are followed by a semi-colon. You can have multiple styles inside the curly braces. 
+Then, what's inside the curly braces are the styles that we want to apply to the concerned elements. Each style consists of a \textbf{property} or \textbf{keyword} - \texttt{color} in our example, and \textbf{value(s)} - \texttt{red} in our example. When your property needs multiple values, separate them with a space, like what I did with the \texttt{margin} property which as you will know later, needs 4 values. The property and the value(s) are separated by a colon. All styles are followed by a semi-colon. You can have multiple styles inside a pair of curly braces. 
 \vspace{6mm}
 
 \subsection*{Further Resources}
@@ -203,7 +203,7 @@ In the \texttt{Elements} menu, you can select an element that you are interested
 \label{fig:devtools2}
 \end{figure}
 
-We can write some temporary styles under \texttt{element.style} (as indicated in \cref{fig:devtools2}), the things we write there would be cleared when we refresh the page. It is a common practice to test out the styling properties that we want to apply to the element(s) here first, then we only copy our code to the less file when we are satisfied, this saves time building the code and defining classes and IDs. Again, be sure to record down what you styled before refreshing the page, as the styles will be gone on refresh. 
+We can write some temporary styles under \texttt{element.style} (as indicated in \cref{fig:devtools2}), the things we write there would be cleared when we refresh the page. It is a common practice to test out the styling properties that we want to apply to the element(s) here first, then we only copy our code to the Less file when we are satisfied, this saves time building the code and defining classes and IDs. Again, be sure to record down what you styled before refreshing the page, as the styles will be gone on refresh. 
 \vspace{6mm}
 
 Remember we are planning to make our web page \textbf{responsive}, meaning that the elements should rearrange and scale, making out web page look good on mobile. To simulate what you will see on mobile devices, just enlarge the developer tools to the right to shrink the page, or you can use a mobile phone simulator by Chrome by clicking one of the buttons on the top left of the developer tools menu.
@@ -240,7 +240,7 @@ We are styling all \texttt{h3} within \texttt{\#quote} in the following example.
 h3 Will not be styled as it is outside #quote
 \end{lstlisting}
 
-Less allows we to also do the nesting like this, that is equivalent to \texttt{\#quote h3}. I need to stress that this is only valid in Less but not in normal CSS. (You can verify this by comparing our less code with \texttt{dist/styles/site.css})
+Less allows we to also do the nesting like this, that is equivalent to \texttt{\#quote h3}. I need to stress that this is only valid in Less but not in normal CSS. (You can verify this by comparing our Less code with \texttt{dist/styles/site.css})
 
 \begin{lstlisting}[language=pug]
 // app/styles/site/abouts.less
@@ -408,6 +408,8 @@ We have to find better ways of doing this, a way that reacts to different screen
 \subsection{Bootstrap Grid system}
 \label{sec:grid}
 
+\textit{Covered in \href{https://www.youtube.com/watch?v=MqXHJmVtEeU&list=PLjGmdnqrOKuYXiu7lgG5HW71jPEUd1XCm&index=9}{video 7 of the series}}
+\vspace{6mm}
 % You can either specify it in pixels, or more interestingly, in percentage with respect to the screen. Setting width to be 100\% can be useful when paired with the grid system (\cref{sec:grid}) is quite a nice combo.
 
 

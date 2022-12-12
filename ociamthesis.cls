@@ -67,8 +67,8 @@
 % you need an oxlogo.eps or oxlogo.pdf file as appropriate
 \def\logo{{
     \includegraphics[width=32mm]{oxlogo}
-    \hspace{10mm}
-    \includegraphics[width=32mm]{compsoc colourful blue.png}
+    % \hspace{10mm}
+    % \includegraphics[width=32mm]{compsoc colourful blue.png}
 }}
 }{}
 
@@ -108,9 +108,9 @@
 {\large \vspace*{40mm} {\logo \par} \vspace*{25mm}}
     {{\Large \@author} \par}
 {\large \vspace*{1ex}
-    {{\@college}, University of Oxford \par}
+    {{\@college} \par}
 \vspace*{1ex}
-    {Learn to Code Officer, Oxford CompSoc \par}
+    {University of Oxford \par}
 \vspace*{25mm}
     {{\submittedtext} \par}
 \vspace*{1ex}
