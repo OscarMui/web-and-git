@@ -40,7 +40,7 @@ What's also valuable is its interactive translator, you can just type any Pug co
 
 I didn't have this piece of notes back when I first learned Pug. Here is \href{https://youtu.be/kt3cEjjkCZA}{the video}\footnote{Link: \url{https://youtu.be/kt3cEjjkCZA}{the video}} that I used to learn the basics. 
 
-HTML is well documented online. You could refer to the \href{https://www.w3schools.com/tags/default.asp}{w3schools documentation}\footnote{Link: \url{https://www.w3schools.com/tags/default.asp}} to learn how to use some more tags. The common ones are either explained in detail in this piece of notes in this chapter. There is no need to understand all the tags, some are much more useful than the rest. My advice is search online when you don't know how to represent something in HTML, e.g. a table, that's when you know you should learn how to use those tags. The translation to Pug is well described in other parts of this chapter already.
+HTML is well-documented online. You could refer to the \href{https://www.w3schools.com/tags/default.asp}{w3schools documentation}\footnote{Link: \url{https://www.w3schools.com/tags/default.asp}} to learn how to use some more tags. The common ones are either explained in detail in this piece of notes in this chapter. There is no need to understand all the tags, some are much more useful than the rest. My advice is to search online when you don't know how to represent something in HTML, e.g. a table, that's when you know you should learn how to use those tags. The translation to Pug is well described in other parts of this chapter already.
 
 \section{General form of a Pug tag}
 
@@ -51,7 +51,7 @@ a#id.class-1.class-2(href="abouts.html") Click for abouts page
 \end{lstlisting}
 
 \begin{enumerate}
-    \item \textbf{Tag}: Specifies the type of element, can be one of the tags in \cref{fig:htmltags}. The first word of the whole line would be regarded as the tag automatically by Pug.
+    \item \textbf{Tag}: Specifies the type of element, which can be one of the tags in \cref{fig:htmltags}. The first word of the whole line would be regarded as the tag automatically by Pug.
     \item \textbf{Classes and IDs}: Give the element a reference, used in styling. We will discuss more in \cref{sec:classesids}.
     \item \textbf{Attributes}: Provides additional information for that element, in the example above, we have the \texttt{href} attribute, which tells the link to go to when we click on that element. Attributes are surrounded in parenthesis and put right after the tag, and we define them in the form of \texttt{name=value} pairs.
     \item \textbf{Plain text}: The text shown in that element. The rest of the whole line except the first word and the things in parenthesis following the first word.
@@ -61,7 +61,7 @@ Classes and IDs are optional. Attributes are not needed for some of the tags(e.g
 
 \section{Tags}
 
-Some of you haven't coded in HTML before, so here is a quick walk-through to the basic tags, but using Pug.js syntax. Tags are like the basic building blocks of the web page, different tags corresponds to different kinds of things you can see on the web page. For example, a \texttt{p} tag denotes normal text, an \texttt{img} tag denotes an image. 
+Some of you haven't coded in HTML before, so here is a quick walk-through of the basic tags, but using Pug.js syntax. Tags are like the basic building blocks of the web page, different tags correspond to different kinds of things you can see on the web page. For example, a \texttt{p} tag denotes normal text, an \texttt{img} tag denotes an image. 
 \vspace{6mm}
 
 For those of you who have used HTML before, mind the syntactical difference, a summary of the differences will be provided in \cref{sec:pugvshtml}. 
@@ -140,7 +140,7 @@ For those of you who have used HTML before, mind the syntactical difference, a s
         
         \texttt{div} &
         Division &
-        It serves no purposes in adding content to the web page, but it can be used to improve organisation of your code, and it is crucial for styling. (\cref{sec:classesids}) &
+        It serves no purpose in adding content to the web page, but it can be used to improve organisation of your code, and it is crucial for styling. (\cref{sec:classesids}) &
         \makecell[lb]{
             \texttt{\textbf{div}} \\
             \texttt{\hspace{6mm}\textbf{h3} Numbers are} \\\texttt{\hspace{6mm}\hspace{6mm}beautiful} \\
@@ -165,7 +165,7 @@ For those of you who have used HTML before, mind the syntactical difference, a s
 
 \textbf{Attributes} provides additional information for that element, they are surrounded in parenthesis and put right after the tag, and we define them in the form of \texttt{name=value} pairs.
 
-Some attributes are necessary for the tags to work properly. For example, the \texttt{src} attribute that tells the \texttt{img} tag where the source of the image is. 
+Some attributes are necessary for the tags to work properly. For example, the \texttt{src} attribute tells the \texttt{img} tag where the source of the image is. 
 
 Please make sure you add your images in the \texttt{app/images} folder as said in \cref{sec:quickstart}.
 \vspace{6mm}
@@ -174,7 +174,7 @@ Please make sure you add your images in the \texttt{app/images} folder as said i
 img(src="images/bookofnumbers.jpg")
 \end{lstlisting}
 
-You can have more than one attributes. For example, you can specify its width and height in pixels, and also an alt text when the image cannot show properly for whatever reason.
+You can have more than one attribute. For example, you can specify its width and height in pixels, and also an alt text when the image cannot show properly for whatever reason.
 
 \begin{lstlisting}[language=pug]
 //- app/templates/partials/navbar.pug
@@ -237,7 +237,7 @@ p.
 \subsection*{\texttt{br} - using normal HTML syntax in Pug}
 \label{sec:br}
 
-But when you look at the output, they are all on the same line. This is because the line breaks you made in the code is independent of the line breaks shown on the web page, \textbf{you need to explicitly use \texttt{br} tags for line breaks}. Because we are inside the \texttt{p} tag, Pug regards everything inside as text but not tags, but we can still use conventional HTML syntax to get around it.
+But when you look at the output, they are all on the same line. This is because the line breaks you made in the code are independent of the line breaks shown on the web page, \textbf{you need to explicitly use \texttt{br} tags for line breaks}. Because we are inside the \texttt{p} tag, Pug regards everything inside as text but not tags, but we can still use conventional HTML syntax to get around it.
 
 \begin{lstlisting}[language=pug]
 p.
@@ -377,7 +377,7 @@ We would explain the effect and syntax of different styles in detail in later se
 
 \subsection{div tags}
 
-It serves no purposes in adding content to the web page, but it can be used to improve organisation of your code, and it is crucial for styling. 
+It serves no purpose in adding content to the web page, but it can be used to improve organisation of your code, and it is crucial for styling. 
 
 For example, we are adding a \texttt{div} tag at the top with an id \texttt{\#quote}, surrounding the \texttt{h3} tag and the \texttt{p} tag.
 \vspace{6mm}
@@ -454,7 +454,7 @@ a(href="#quote") Back to top
 ...
 \end{lstlisting}
 
-Now when you click on it, it brings you to the start of the page (if you zoom in large enough), to the element with ID \texttt{quote}, which is the top of the page. This feature does not work for classes because multiple elements can have the same class name in the same page.
+Now when you click on it, it brings you to the start of the page (if you zoom in large enough), to the element with ID \texttt{quote}, which is the top of the page. This feature does not work for classes because multiple elements can have the same class name on the same page.
 
 \begin{figure}[h]
 \centering
